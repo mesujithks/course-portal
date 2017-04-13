@@ -1,0 +1,177 @@
+/*badges.html*/
+.badegs_column{
+  width:100%;
+  padding: 15px 10px;
+  background:#fff;
+}
+.column{
+  height:100%;
+  width:100%;
+  text-align:center;
+  font-size:15px
+}
+/*from-fields page*/
+.main_content{
+  overflow: hidden !important;
+  background: #000;
+  padding: 20px 25px;
+}
+.form-fields-column{
+  width:100%;
+  padding: 15px 10px;
+  background:#fff;
+}
+.box{
+  box-sizing: border-box;
+  position: relative;
+  background: #FF6E40;
+  color: white;
+  height: 64px;
+  width: 100%;
+  padding: 16px;
+}
+.wrapper_box_left{
+  box-sizing: border-box;
+  left: 16px;
+}
+.wrapper_box_right{
+  box-sizing: border-box;
+  position: absolute;
+  right: 16px;
+}
+.btn-left{
+    margin-top: -30px;
+    float: right;
+}
+
+/*sliders-toggle-btn page*/
+.sliders-toggle-btn-column{
+  width:100%;
+  padding: 15px 10px;
+  background:#fff;
+}
+.sliders-toggle-btn-column2{
+  background:rgba(249, 249, 249, 0.67);
+  padding: 15px 10px;
+}
+.progress-bar{
+  width: 100% !important;;
+}
+
+/*cards html*/
+.demo-card-wide.mdl-card {
+  width: 100%;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../img/Codershood-logo-large.png') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.demo-card-image.mdl-card {
+  width: 256px;
+  height: 256px;
+  background: url('../img/Batman-Vs-Superman.png') center / cover;
+}
+.demo-card-image > .mdl-card__actions {
+  height: 52px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.7);
+}
+.demo-card-image__filename {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.text_card{
+  font-size: 10px !important;
+}
+.demo-card-event.mdl-card {
+  width: 256px;
+  height: 256px;
+  background: #3E4EB8;
+}
+.demo-card-event > .mdl-card__actions {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.demo-card-event > .mdl-card__title {
+  align-items: flex-start;
+}
+.demo-card-event > .mdl-card__title > h4 {
+  margin-top: 0;
+}
+.demo-card-event > .mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+.demo-card-event > .mdl-card__title,
+.demo-card-event > .mdl-card__actions,
+.demo-card-event > .mdl-card__actions > .mdl-button {
+  color: #fff;
+}
+
+
+.demo-card-event.mdl-card {
+  width: 256px;
+  height: 256px;
+}
+.custom{
+  background: url('../img/Batman-Vs-Superman.png') center / cover  !important;
+}
+.demo-card-event > .mdl-card__actions {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.demo-card-event > .mdl-card__title {
+  align-items: flex-start;
+}
+.demo-card-event > .mdl-card__title > h4 {
+  margin-top: 0;
+}
+.demo-card-event > .mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+.demo-card-event > .mdl-card__title,
+.demo-card-event > .mdl-card__actions,
+.demo-card-event > .mdl-card__actions > .mdl-button {
+  color: #fff;
+}
+.mdl-card--expand{
+  background-color: rgba(0,0,0,0.2);
+}
+
+
+/*navigation-layouts.html*/
+.layout_col{
+  width: 100%;
+  background: #d2d2d2;
+  padding: 20px 20px;
+}
+.layout1{  
+  height: 400px;
+  width: 100% !important;
+}
+/*1st*/
+.demo-layout-transparent {
+  background: url('../img/batmanvsuperman-large.png') center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+.layout__drawer_custom{
+  width: 100%;
+}
+.avatar{
+  border-radius: 240px;
+}
+.demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
+  padding-right: 0;
+}

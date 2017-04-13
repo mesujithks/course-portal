@@ -1,0 +1,157 @@
+.header-bg{
+  background: #000 !important;
+  color: #d2d2d2 !important;
+}
+
+.grid.mdl-card {
+  width:100%;
+  height: 256px;
+  background: url('../img/material-grid.png') center / cover;
+}
+.grid > .mdl-card__actions {
+  height: 52px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+.demo-card-image__filename {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cards.mdl-card {
+  width:100%;
+  height: 256px;
+  background: url('../img/Batman-Vs-Superman.png') center / cover;
+}
+.cards > .mdl-card__actions {
+  height: 52px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+.cards h3{
+  color: #fff !important; 
+}
+
+.buttons.mdl-card {
+  width:100%;
+  height: 256px;
+  background: url('../img/Material-button.png') center / cover;
+}
+.buttons > .mdl-card__actions {
+  height: 52px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.badges.mdl-card {
+  width:100%;
+  height: 256px;
+  background:url('../img/Material-badges.png') center / cover;  
+}
+.badges > .mdl-card__actions {
+  height: 52px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+
+.navigation-layouts.mdl-card {
+  width:100%;
+  height: 256px;  background: url('../img/Material-navigation-layout.png');
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+.navigation-layouts > .mdl-card__actions {
+  height: 52px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+.navigation-layouts h4{
+  color: #fff;
+}
+
+.tables-layouts.mdl-card {
+  width:100%;
+  height: 256px;  background: url('../img/Material-table.png');
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+.tables-layouts > .mdl-card__actions {
+  height: 52px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.fields-layouts.mdl-card {
+  width:100%;
+  height: 256px;  background: url('../img/Material-from-fields.png');
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+.fields-layouts > .mdl-card__actions {
+  height: 52px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+
+.sliders-layouts.mdl-card {
+  width:100%;
+  height: 256px; 
+  background:url('../img/Material-sliders.png') center / cover;    
+}
+.sliders-layouts > .mdl-card__actions {
+  height: 52px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.loading-layouts.mdl-card {
+  width:100%;
+  height: 256px; 
+  background:url('../img/Material-loading.gif') center / cover;    
+}
+.loading-layouts > .mdl-card__actions {
+  height: 52px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.tabs-layouts.mdl-card {
+  width:100%;
+  height: 256px; 
+  text-align: right;
+  background:url('../img/Material-tabs.png') center / cover;    
+}
+.tabs-layouts > .mdl-card__actions {
+  height: 52px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+.tabs-layouts > .mdl-card__title{
+  text-align: left;
+}
+
+.box{
+  box-sizing: border-box;
+  position: relative;
+  color: white;
+  height: 64px;
+  width: 100%;
+}
+.share_btn{
+  float: right;
+  color: #fff !important;
+}
+.share_btn_tabs{
+  float: left;
+  color: #fff !important;
+}
+.footer-bg{
+  background: #000 !important;
+}
+.link{
+  text-decoration: none;
+  color: #d2d2d2;
+}
