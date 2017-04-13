@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Material Design</title>
+    <title>Online Course Portal- Home</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/material.min.css">
     <link rel="stylesheet" href="css/materialdesignicons.css" media="all" rel="stylesheet" type="text/css">
@@ -15,33 +15,33 @@
 <body>
 
 	<div class="mdl-card mdl-shadow--2dp layout1">
-						<div class="mdl-layout__container"><div data-upgraded=",MaterialLayout" class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer is-upgraded">
-						    <header class="mdl-layout__header is-casting-shadow"><div class="mdl-layout__drawer-button"><i class="material-icons">menu</i></div>
+						<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+						    <header class="mdl-layout__header">
 							    <div class="mdl-layout__header-row">
-							      <span class="mdl-layout-title">Title</span>
+							      <span class="mdl-layout-title">Course Portal</span>
 							      <div class="mdl-layout-spacer"></div>
 							      <nav class="mdl-navigation mdl-layout--large-screen-only">
-							        <a class="mdl-navigation__link" href="">Link</a>
-							        <a class="mdl-navigation__link" href="">Link</a>
-							        <a class="mdl-navigation__link" href="">Link</a>
-							        <a class="mdl-navigation__link" href="">Link</a>
+							        <a class="mdl-navigation__link" href="/login.php">Login</a>
+							        <a class="mdl-navigation__link" href="">Register</a>
+							        <a class="mdl-navigation__link" href="">Courses</a>
+							        <a class="mdl-navigation__link" href="">About</a>
 							      </nav>
 							    </div>
 						    </header>
-						    <div class="mdl-layout__drawer is-visible">
-							    <span class="mdl-layout-title">Title</span>
+						    <div class="mdl-layout__drawer">
+							    <span class="mdl-layout-title">Menu</span>
 							    <nav class="mdl-navigation">
-							      <a class="mdl-navigation__link" href="">Link</a>
-							      <a class="mdl-navigation__link" href="">Link</a>
-							      <a class="mdl-navigation__link" href="">Link</a>
-							      <a class="mdl-navigation__link" href="">Link</a>
+							      <a class="mdl-navigation__link" href="/login.php">Login</a>
+							      <a class="mdl-navigation__link" href="">Register</a>
+							      <a class="mdl-navigation__link" href="">Courses</a>
+							      <a class="mdl-navigation__link" href="">About</a>
 							    </nav>
 						    </div>
 						    <main class="mdl-layout__content">
 						    	<div class="page-content"><!-- Your content goes here --></div>
 						    </main>
-						<div class="mdl-layout__obfuscator is-visible"></div></div></div>
-					</div>
+						</div>
+					</div>	
 					
 </body>
 </html>
