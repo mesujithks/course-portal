@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+/*
+Author: Javed Ur Rehman
+Website: http://www.allphptricks.com/
+*/
+
+include("auth.php"); //include auth.php file on all secure pages ?><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -22,7 +28,7 @@
 							      <div class="mdl-layout-spacer"></div>
 							      <nav class="mdl-navigation mdl-layout--large-screen-only">
 							        <a class="mdl-navigation__link" href="login.php">Login</a>
-							        <a class="mdl-navigation__link" href="">Register</a>
+							        <a class="mdl-navigation__link" href="signup.php">Signup</a>
 							        <a class="mdl-navigation__link" href="">Courses</a>
 							        <a class="mdl-navigation__link" href="">About</a>
 							      </nav>
@@ -32,7 +38,7 @@
 							    <span class="mdl-layout-title">Menu</span>
 							    <nav class="mdl-navigation">
 							      <a class="mdl-navigation__link" href="login.php">Login</a>
-							      <a class="mdl-navigation__link" href="">Register</a>
+							      <a class="mdl-navigation__link" href="signup.php">Signup</a>
 							      <a class="mdl-navigation__link" href="">Courses</a>
 							      <a class="mdl-navigation__link" href="">About</a>
 							    </nav>

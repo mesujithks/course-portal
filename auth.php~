@@ -17,7 +17,7 @@ else {
 		$rows = mysqli_num_rows($result);
         if($rows==1){
 			$row=$result->fetch_assoc();
-			if($row["type"]=="admin" && basename($_SERVER['PHP_SELF'])!="admin.php")
+			if($row["type"]=="admin")
 			{
 				header("Location: admin.php"); 
 				

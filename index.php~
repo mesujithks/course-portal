@@ -21,8 +21,8 @@
 							      <span class="mdl-layout-title">Course Portal</span>
 							      <div class="mdl-layout-spacer"></div>
 							      <nav class="mdl-navigation mdl-layout--large-screen-only">
-							        <a class="mdl-navigation__link" href="/login.php">Login</a>
-							        <a class="mdl-navigation__link" href="">Register</a>
+							        <a class="mdl-navigation__link" href="login.php">Login</a>
+							        <a class="mdl-navigation__link" href="signup.php">Signup</a>
 							        <a class="mdl-navigation__link" href="">Courses</a>
 							        <a class="mdl-navigation__link" href="">About</a>
 							      </nav>
@@ -31,8 +31,8 @@
 						    <div class="mdl-layout__drawer">
 							    <span class="mdl-layout-title">Menu</span>
 							    <nav class="mdl-navigation">
-							      <a class="mdl-navigation__link" href="/login.php">Login</a>
-							      <a class="mdl-navigation__link" href="">Register</a>
+							      <a class="mdl-navigation__link" href="login.php">Login</a>
+							      <a class="mdl-navigation__link" href="signup.php">Signup</a>
 							      <a class="mdl-navigation__link" href="">Courses</a>
 							      <a class="mdl-navigation__link" href="">About</a>
 							    </nav>

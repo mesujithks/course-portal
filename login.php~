@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Online Course Portal- Home</title>
+    <title>Login - Online Course Portal</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/material.min.css">
     <link rel="stylesheet" href="css/materialdesignicons.css" media="all" rel="stylesheet" type="text/css">
@@ -15,6 +15,7 @@
     		
     		var f=document.getElementById('getlogin');
     		if(f){
+    			
     			f.submit();
     		}
 }    		
@@ -41,9 +42,24 @@
 		$rows = mysqli_num_rows($result);
         if($rows==1){
 			$_SESSION['username'] = $username;
+			$row=$result->fetch_assoc();
+			if($row["type"]=="admin")
+			{
+				echo "admin is logedin";
+				
+			}
+			else if($row["type"]=="student")
+			{
+				echo "student loggedin";
+			}
+			else
+			{
 			header("Location: index.php"); // Redirect user to index.php
+			}
             }else{
-				echo "<div class='form'><h3>Username/password is incorrect.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
+					echo '<script type="text/javascript">';
+					echo 'alert("Invalid Username/Password, Try again.!");';
+    				echo '</script>';
 				}
     }
 ?>
@@ -52,11 +68,11 @@
 						<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 						    <header class="mdl-layout__header">
 							    <div class="mdl-layout__header-row">
-							      <span class="mdl-layout-title">Course Portal</span>
+							      <span class="mdl-layout-title">Course Portal Login</span>
 							      <div class="mdl-layout-spacer"></div>
 							      <nav class="mdl-navigation mdl-layout--large-screen-only">
-							        <a class="mdl-navigation__link" href="login.php">Login</a>
-							        <a class="mdl-navigation__link" href="">Register</a>
+							        <a class="mdl-navigation__link" href="index.php">Home</a>
+							        <a class="mdl-navigation__link" href="signup.php">Signup</a>
 							        <a class="mdl-navigation__link" href="">Courses</a>
 							        <a class="mdl-navigation__link" href="">About</a>
 							      </nav>
@@ -65,8 +81,8 @@
 						    <div class="mdl-layout__drawer">
 							    <span class="mdl-layout-title">Menu</span>
 							    <nav class="mdl-navigation">
-							      <a class="mdl-navigation__link" href="login.php">Login</a>
-							      <a class="mdl-navigation__link" href="">Register</a>
+							      <a class="mdl-navigation__link" href="index.php">Home</a>
+							      <a class="mdl-navigation__link" href="signup.php">Signup</a>
 							      <a class="mdl-navigation__link" href="">Courses</a>
 							      <a class="mdl-navigation__link" href="">About</a>
 							    </nav>
@@ -92,14 +108,14 @@
 						<input class="mdl-textfield__input" type="password" id="sample2" name="password">
 						<label class="mdl-textfield__label" for="sample2">Enter Password</label>
 			        </div>
-				</div>				
+				</div>
 				
 				<div class="mdl-cell mdl-cell--12-col  login-btn-con">
 					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary btn" onclick="postLogin()">Login</button>
 				</div>
 				
 				<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet links">
-					<a class="mdl-button--primary">Register now !</a>
+					<a class="mdl-button--primary" href="signup.php">Signup now !</a>
 				</div>
 				<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet links">
 					<a class="mdl-button--primary">Forgot password ?</a>
