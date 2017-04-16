@@ -45,7 +45,7 @@
 			$row=$result->fetch_assoc();
 			if($row["type"]=="admin")
 			{
-				echo "admin is logedin";
+				header("Location: admin.php"); 
 				
 			}
 			else if($row["type"]=="student")

@@ -50,7 +50,7 @@
 			}
 			else if($row["type"]=="student")
 			{
-				echo "student loggedin";
+				header("Location: student.php");
 			}
 			else
 			{

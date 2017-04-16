@@ -22,9 +22,9 @@ else {
 				header("Location: admin.php"); 
 				
 			}
-			else if($row["type"]=="student")
+			else if($row["type"]=="student" && basename($_SERVER['PHP_SELF'])!="student.php")
 			{
-				echo "student loggedin";
+				header("Location: student.php");
 			}
 		}
 		else {
