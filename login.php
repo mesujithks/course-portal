@@ -12,14 +12,11 @@
     <script src="js/material.min.js"></script>
     <script type="text/javascript" >
     	function postLogin() {
-    		
     		var f=document.getElementById('getlogin');
     		if(f){
-    			
-    			f.submit();
+    				f.submit();
     		}
-}    		
-    	
+		}
     </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -96,8 +93,8 @@
 					<i class="material-icons">person</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="sample1" name="username">
-						<label class="mdl-textfield__label" for="sample1">Enter Username</label>
+						<input class="mdl-textfield__input" type="text" id="username" name="username">
+						<label class="mdl-textfield__label" for="username">Enter Username</label>
 						
 			        </div>
 				</div>				
@@ -105,8 +102,8 @@
 					<i class="material-icons">lock</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="password" id="sample2" name="password">
-						<label class="mdl-textfield__label" for="sample2">Enter Password</label>
+						<input class="mdl-textfield__input" type="password" id="password" name="password">
+						<label class="mdl-textfield__label" for="password">Enter Password</label>
 			        </div>
 				</div>
 				
@@ -126,4 +123,55 @@
 					</div>	
 					
 </body>
+
+<footer class="mdl-mega-footer">
+	<div class="mdl-mega-footer__middle-section">
+		  <div class="mdl-mega-footer__drop-down-section"> 
+		  		<input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
+		  		<h1 class="mdl-mega-footer__heading">Features</h1> 
+		  		<ul class="mdl-mega-footer__link-list"> 
+				  	<li><a href="#">About</a></li> 
+				  	<li><a href="#">Terms</a></li>
+				  	<li><a href="#">Partners</a></li>
+					<li><a href="#">Updates</a></li>
+				</ul> 
+			</div>
+		<div class="mdl-mega-footer__drop-down-section">
+			 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
+			 <h1 class="mdl-mega-footer__heading">Details</h1> 
+			 <ul class="mdl-mega-footer__link-list"> 
+				 <li><a href="#">Specs</a></li> 
+				 <li><a href="#">Tools</a></li> 
+				 <li><a href="#">Resources</a></li> 
+			 </ul> 
+		 </div> 
+	 <div class="mdl-mega-footer__drop-down-section"> 
+		 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
+		 <h1 class="mdl-mega-footer__heading">Technology</h1> 
+		 <ul class="mdl-mega-footer__link-list"> 
+			 <li><a href="#">How it works</a></li> 
+			 <li><a href="#">Patterns</a></li> 
+			 <li><a href="#">Usage</a></li> 
+			 <li><a href="#">Products</a></li> 
+			 <li><a href="#">Contracts</a></li> 
+		 </ul> 
+	 </div>
+	 <div class="mdl-mega-footer__drop-down-section"> 
+		 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
+		 <h1 class="mdl-mega-footer__heading">FAQ</h1> 
+		 <ul class="mdl-mega-footer__link-list"> 
+			 <li><a href="#">Questions</a></li> 
+			 <li><a href="#">Answers</a></li> 
+			 <li><a href="#">Contact us</a></li> 
+		 </ul> 
+	 </div>
+	<div class="mdl-mega-footer__bottom-section"> 
+		<div class="mdl-logo">Title</div> 
+		<ul class="mdl-mega-footer__link-list"> 
+			<li><a href="#">Help</a></li> 
+			<li><a href="#">Privacy & Terms</a></li> 
+		</ul> 
+	</div> 
+</footer>
+
 </html>

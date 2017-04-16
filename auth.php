@@ -3,7 +3,7 @@ require('db.php');
 session_start();
 if(!isset($_SESSION["username"])){
 	if(basename($_SERVER['PHP_SELF'])=="index.php" || basename($_SERVER['PHP_SELF'])=="signup.php") {
-		echo "user is not loggedin";	
+			
 	}
 	else {
 		header("Location: login.php");

@@ -12,14 +12,11 @@
     <script src="js/material.min.js"></script>
     <script type="text/javascript" >
     	function postLogin() {
-    		
     		var f=document.getElementById('getlogin');
     		if(f){
-    			
-    			f.submit();
+    				f.submit();
     		}
-}    		
-    	
+		}
     </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -50,7 +47,7 @@
 			}
 			else if($row["type"]=="student")
 			{
-				echo "student loggedin";
+				header("Location: student.php");
 			}
 			else
 			{
@@ -96,8 +93,8 @@
 					<i class="material-icons">person</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="sample1" name="username">
-						<label class="mdl-textfield__label" for="sample1">Enter Username</label>
+						<input class="mdl-textfield__input" type="text" id="username" name="username">
+						<label class="mdl-textfield__label" for="username">Enter Username</label>
 						
 			        </div>
 				</div>				
@@ -105,8 +102,8 @@
 					<i class="material-icons">lock</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="password" id="sample2" name="password">
-						<label class="mdl-textfield__label" for="sample2">Enter Password</label>
+						<input class="mdl-textfield__input" type="password" id="password" name="password">
+						<label class="mdl-textfield__label" for="password">Enter Password</label>
 			        </div>
 				</div>
 				

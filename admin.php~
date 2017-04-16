@@ -48,7 +48,7 @@ require('db.php');
 													echo $row["email"];
 													}?>&#x25BC;</strong></a>
  						    	    		</nav></center>
- 						    	    		<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="submenu">
+ 						    	    		<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="submenu">
  						    	    			<li class="mdl-menu__item"><a class="mdl-navigation__link" href="logout.php">Logout</a></li>
  						    	    		</ul>
  						    	    		<hr>
