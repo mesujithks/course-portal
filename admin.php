@@ -35,8 +35,9 @@ require('db.php');
 						    	<div class="layout__drawer_custom">
 						    	    <div class="mdl-grid">
 						    	    	<div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet ">
- 						    	    		<img class="dp_img" src="img/admin-dp.png" class="avatar">
- 						    	    		<p><strong>
+ 						    	    		<center><img class="dp_img" src="img/admin-dp.png" class="avatar"> 
+ 						    	    		<nav class="mdl-navigation">
+						    		    		<a id="submenu" class="mdl-navigation__link" href="#"><strong>
  						    	    			<?php
  						    	    			$username=$_SESSION["username"];
 												$query = "SELECT * FROM `users` WHERE username='$username'";
@@ -45,8 +46,11 @@ require('db.php');
         										if($rows==1){
 													$row=$result->fetch_assoc();
 													echo $row["email"];
-													}?></strong>
- 						    	    		</p>
+													}?>&#x25BC;</strong></a>
+ 						    	    		</nav></center>
+ 						    	    		<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="submenu">
+ 						    	    			<li class="mdl-menu__item"><a class="mdl-navigation__link" href="logout.php">Logout</a></li>
+ 						    	    		</ul>
  						    	    		<hr>
 					    		        </div>
 						    		    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
