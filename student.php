@@ -1,23 +1,6 @@
 <?php
 include("auth.php"); 
-include("functions.php");
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Online Course Portal- Student Panel</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/material.min.css">
-    <link rel="stylesheet" href="css/materialdesignicons.css" media="all" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
-    <script src="js/material.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-<body>
-<?php 
+
 	$username=$_SESSION["username"];
 	$query = "SELECT * FROM `users` WHERE username='$username'";
 	$result = mysqli_query($con,$query) or die(mysql_error());
@@ -36,6 +19,21 @@ include("functions.php");
 		$name=$row["fname"]." ".$row["lname"];
 	}
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Online Course Portal- Student Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/materialdesignicons.css" media="all" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
+    <script src="js/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
 
 	<div class="mdl-card mdl-shadow--2dp layout1">
 						<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">

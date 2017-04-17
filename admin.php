@@ -1,6 +1,14 @@
 <?php
 include("auth.php"); //include auth.php file on all secure pages
 require('db.php');
+$username=$_SESSION["username"];
+$query = "SELECT * FROM `users` WHERE username='$username'";
+$result = mysqli_query($con,$query) or die(mysql_error());
+$rows = mysqli_num_rows($result);
+  										if($rows==1){
+	$row=$result->fetch_assoc();
+	$email=$row["email"];
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,15 +46,7 @@ require('db.php');
  						    	    		<center><img class="dp_img" src="img/admin-dp.png" class="avatar"> 
  						    	    		<nav class="mdl-navigation">
 						    		    		<a id="submenu" class="mdl-navigation__link" href="#"><strong>
- 						    	    			<?php
- 						    	    			$username=$_SESSION["username"];
-												$query = "SELECT * FROM `users` WHERE username='$username'";
-												$result = mysqli_query($con,$query) or die(mysql_error());
-												$rows = mysqli_num_rows($result);
-        										if($rows==1){
-													$row=$result->fetch_assoc();
-													echo $row["email"];
-													}?>&#x25BC;</strong></a>
+ 						    	    			<?php echo $email; ?>&#x25BC;</strong></a>
  						    	    		</nav></center>
  						    	    		<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="submenu">
  						    	    			<li class="mdl-menu__item"><a class="mdl-navigation__link" href="logout.php">Logout</a></li>

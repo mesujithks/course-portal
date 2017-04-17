@@ -1,5 +1,122 @@
 <?php
-include("auth.php"); //include auth.php file on all secure pages ?>
+	include("auth.php"); //include auth.php file on all secure pages 
+	require('db.php');
+	$usernameErr=$passwordErr=$emailErr=$fnameErr=$lnameErr=$dobErr=$collegeErr="";
+	$username=$password=$email=$phone=$fname=$lname=$address=$dob=$college="";
+	$successMessage="";
+	$flag=0;
+	
+	if ($_SERVER["REQUEST_METHOD"]=="POST"){
+	 	if(empty($_POST["username"])) {
+			$usernameErr="Username is required.";
+			$flag=1;
+		}
+		else {
+			$username = test_input($_POST['username']);
+		}
+		if(empty($_POST["email"])) {
+			$emailErr="Email is required.";
+			$flag=1;
+		}
+		else {
+			$email = test_input($_POST['email']);	
+		}
+		if(empty($_POST["password"])) {
+			$passwordErr="Password is required.";
+			$flag=1;
+		}
+		else {
+			$password = test_input($_POST['password']);
+		}
+		if(empty($_POST["fname"])) {
+			$fnameErr="First name is required.";
+			$flag=1;
+		}
+		else {
+			$fname = test_input($_POST['fname']);
+		}
+		if(empty($_POST["lname"])) {
+			$lnameErr="Last name is required.";
+			$flag=1;
+		}
+		else {
+			$lname = test_input($_POST['lname']);
+		}
+		if(empty($_POST["dob"])) {
+			$dobErr="Date of birth is required.";
+			$flag=1;
+		}
+		else {
+			$dob = test_input($_POST['dob']);
+		}
+		if(empty($_POST["college"])) {
+			$collegeErr="College/Institution is required.";
+			$flag=1;
+		}
+		else {
+			$college = test_input($_POST['college']);
+		}
+		
+		$address = stripslashes($_POST['address']);
+		$address = mysqli_real_escape_string($con,$address);
+		$phone = stripslashes($_POST['phone']);
+		$phone = mysqli_real_escape_string($con,$phone);
+		$gender = stripslashes($_POST['gender']);
+		$gender = mysqli_real_escape_string($con,$gender);		
+		
+		$type = stripslashes($_POST['type']);
+		$type = mysqli_real_escape_string($con,$type);
+	
+		$trn_date = date("Y-m-d H:i:s");
+		
+		if($flag==0) {
+		  $query = "INSERT into `users` (username, password, email, type, trn_date) VALUES ('$username', '".md5($password)."', '$email', '$type', '$trn_date')";
+		  $result = mysqli_query($con,$query);
+		  if($result){
+			   //succesfully inserted user
+			   $query1 = "SELECT * FROM `users` WHERE username='$username'";
+			   $result1 = mysqli_query($con,$query1);
+			   if($result1) {
+			   	
+			   	$row=$result1->fetch_assoc();
+			 	   $studentId=$row["id"];
+					$query2 = "INSERT into `students` (studentId,fname,lname,address,phone,college,dob,gender) VALUES ($studentId,'$fname', '$lname', '$address', '$phone', '$college','$dob','$gender')";
+			   	$result2 = mysqli_query($con,$query2);
+			   	if($result2) {
+			   		$username=$password=$email=$phone=$fname=$lname=$address=$dob=$college="";
+			   		$successMessage='<div class="admin-cover-card-wide mdl-card mdl-shadow--2dp">
+					    <div class="mdl-card__title">
+					        <h2 class="mdl-card__title-text">Success!</h2>
+					    </div>
+					    <div class="mdl-card__supporting-text">
+					        Your account is successfully created. You can login now...
+					    </div>
+					    <div class="mdl-card__actions mdl-card--border">
+					        <a href="login.php" target="_blank" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+					            Login
+					        </a>
+					    </div>
+					</div>';
+			   		
+			   		}
+				
+					else {
+							$query1 = "DELETE `users` WHERE username='$username'";
+			  				$result1 = mysqli_query($con,$query1);
+						}
+				} 
+			 		
+			}
+		 }
+	}
+	
+	function test_input($data) {
+		$data=trim($data);
+		$data=stripslashes($data);
+		$data=htmlspecialchars($data);
+		return $data;
+		}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,24 +133,8 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 	 <link rel="stylesheet" href="css/getmdl-select.min.css">
     <script type="text/javascript" >
     	function postSignupStudent() {
-    		
     		var f=document.getElementById('signupstudent');
-    		var u=document.getElementById('username').value;
-    		var p=document.getElementById('password').value;
-    		var e=document.getElementById('email').value;
-    		var fn=document.getElementById('fname').value;
-    		var ln=document.getElementById('lname').value;
-    		var ad=document.getElementById('address').value;
-    		var ph=document.getElementById('phone').value;
-    		var cl=document.getElementById('college').value;
-    		var db=document.getElementById('dob').value;
-    		var gd=document.getElementById('gender').value;
-    		
-    		if (u=="" || p=="" || e=="" || fn=="" || ln=="" || ad=="" || ph=="" || cl=="" || db=="" || gd=="") {
-    			alert("error");
-    		}
-    		else if(f){
-    			
+    		if(f){
     			f.submit();
     		}
 }    		
@@ -42,68 +143,8 @@ include("auth.php"); //include auth.php file on all secure pages ?>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-		<?php
-	require('db.php');
-    // If form submitted, insert values into the database.
-    if (isset($_REQUEST['username'])){
-		$username = stripslashes($_REQUEST['username']); // removes backslashes
-		$username = mysqli_real_escape_string($con,$username); //escapes special characters in a string
-		$email = stripslashes($_REQUEST['email']);
-		$email = mysqli_real_escape_string($con,$email);
-		$password = stripslashes($_REQUEST['password']);
-		$password = mysqli_real_escape_string($con,$password);
-		$type = stripslashes($_REQUEST['type']);
-		$type = mysqli_real_escape_string($con,$type);
+<?php
 
-		$trn_date = date("Y-m-d H:i:s");
-        $query = "INSERT into `users` (username, password, email, type, trn_date) VALUES ('$username', '".md5($password)."', '$email', '$type', '$trn_date')";
-        $result = mysqli_query($con,$query);
-        if($result){
-            //succesfully inserted user
-            $query1 = "SELECT * FROM `users` WHERE username='$username'";
-            $result1 = mysqli_query($con,$query1);
-            if($result1) {
-            	
-            	$row=$result1->fetch_assoc();
-          	   $studentId=$row["id"];
-          	   echo $studentId;
-        
-      			$fname = stripslashes($_REQUEST['fname']);
-					$fname = mysqli_real_escape_string($con,$fname);
-					$lname = stripslashes($_REQUEST['lname']);
-					$lname = mysqli_real_escape_string($con,$lname);
-					$address = stripslashes($_REQUEST['address']);
-					$address = mysqli_real_escape_string($con,$address);
-					$phone = stripslashes($_REQUEST['phone']);
-					$phone = mysqli_real_escape_string($con,$phone);
-					$college = stripslashes($_REQUEST['college']);
-					$college = mysqli_real_escape_string($con,$college);
-					$dob = stripslashes($_REQUEST['dob']);
-					$dob = mysqli_real_escape_string($con,$dob);
-					$gender = stripslashes($_REQUEST['gender']);
-					$gender = mysqli_real_escape_string($con,$gender);
-
-					
-					$query2 = "INSERT into `students` (studentId,fname,lname,address,phone,college,dob,gender) VALUES ($studentId,'$fname', '$lname', '$address', '$phone', '$college','$dob','$gender')";
-            	$result2 = mysqli_query($con,$query2);
-            	if($result2) {
-            		echo "signup success";
-            		
-            		}
-				
-					else {
-							echo mysqli_error($con);
-							$query1 = "DELETE `users` WHERE username='$username'";
-           				$result1 = mysqli_query($con,$query1);
-						}
-				}else {
-          		echo mysqli_error($con);
-          		}
-			}	
-		
-
-        
-    }
 ?>
 
 		<div class="mdl-card mdl-shadow--2dp layout1">
@@ -121,11 +162,6 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 							        <a class="mdl-navigation__link" href="">About</a>
 							      </nav>
 							    </div>
-							    <!-- Tabs -->
-							    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-							      <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Student</a>
-							      <a href="#fixed-tab-2" class="mdl-layout__tab">Faculty</a>
-							    </div>
 						    </header>
 						    <div class="mdl-layout__drawer">
 						        <span class="mdl-layout-title">Menu</span>
@@ -137,10 +173,9 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 							    </nav>
 						    </div>
 						    <main class="mdl-layout__content">
-							    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-							        <div class="page-content"><!-- Your content goes here -->
-											<div class="page-content"><center>
-						    	<form action="" method="post" name="signup" id="signupstudent">
+						    	<?php echo $successMessage; ?>
+							    <div class="page-content"><center>
+						    	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="signup" id="signupstudent">
 			<div class="login-form-div mdl-grid">
 				
 				<div class="mdl-cell mdl-cell--12-col cell_con">
@@ -148,16 +183,18 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="uname" name="username">
-						<label class="mdl-textfield__label" for="uname">Enter Username</label>
+						<input class="mdl-textfield__input" type="text" id="uname" name="username" value="<?php echo $username; ?>">
+						<label class="mdl-textfield__label" for="uname">Username</label>
+						<span class="error"><?php echo $usernameErr; ?></span>
 						
 			        </div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<i class="material-icons">lock</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="password" id="pwd" name="password">
-						<label class="mdl-textfield__label" for="pwd">Enter Password</label>
+						<input class="mdl-textfield__input" type="password" id="pwd" name="password" value="<?php echo $password; ?>">
+						<label class="mdl-textfield__label" for="pwd">Password</label>
+						<span class="error"><?php echo $passwordErr; ?></span>
 			        </div>
 				</div>
 				
@@ -165,15 +202,15 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 					<i class="material-icons">email</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email">
-						<label class="mdl-textfield__label" for="email">Enter valid Email</label>
-						<span class="mdl-textfield__error">Invalid Email...!</span>
+						<input class="mdl-textfield__input" type="email" id="email" name="email" value="<?php echo $email; ?>">
+						<label class="mdl-textfield__label" for="email">Email</label>
+						<span class="error"><?php echo $emailErr; ?></span>
 			        </div>
 			      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			        <i class="material-icons">phone</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="phone" name="phone">
+						<input class="mdl-textfield__input" type="text" id="phone" name="phone" value="<?php echo $phone; ?>">
 						<label class="mdl-textfield__label" for="phone">Phone Number</label>
 			        </div>
 			   
@@ -184,15 +221,17 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 					<i class="material-icons">person</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="fname" name="fname">
+						<input class="mdl-textfield__input" type="text" id="fname" name="fname" value="<?php echo $fname; ?>">
 						<label class="mdl-textfield__label" for="fname">First Name</label>
+						<span class="error"><?php echo $fnameErr; ?></span>
 			        </div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<i class="material-icons">person</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="lname" name="lname">
+						<input class="mdl-textfield__input" type="text" id="lname" name="lname" value="<?php echo $lname; ?>">
 						<label class="mdl-textfield__label" for="lname">Last Name</label>
+						<span class="error"><?php echo $lnameErr; ?></span>
 			        </div>
 			   </div>
 			   
@@ -200,8 +239,9 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 					<i class="material-icons">today</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="dob" id="lname" name="dob">
+						<input class="mdl-textfield__input" type="dob" id="lname" name="dob" value="<?php echo $dob; ?>">
 						<label class="mdl-textfield__label" for="dob">Date of Birth (YYYY-MM-DD)</label>
+						<span class="error"><?php echo $dobErr; ?></span>
 			        </div>
 			   </div>
 			   
@@ -209,7 +249,7 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 					<i class="material-icons">home</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-								<textarea class="mdl-textfield__input" type="text" rows= "3" id="address" name="address" ></textarea>
+								<textarea class="mdl-textfield__input" type="text" rows= "3" id="address" name="address" value="<?php echo $address; ?>"></textarea>
 								<label class="mdl-textfield__label" for="address">Address</label>
 						    </div>
 			        </div>
@@ -232,8 +272,9 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 					<i class="material-icons">work</i>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="college" name="college">
+						<input class="mdl-textfield__input" type="text" id="college" name="college" value="<?php echo $college; ?>">
 						<label class="mdl-textfield__label" for="college">College or Institution</label>
+						<span class="error"><?php echo $collegeErr; ?></span>
 			        </div>
 			   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<i class="material-icons">person</i>
@@ -251,12 +292,7 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 				<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet links">
 					<a class="mdl-button--primary" href="login.php">I have an account alredy, Login Now!</a>
 				</div>		
-			</div></form></div></center>							        
-							        </div>
-							    </section>
-							    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-							        <div class="page-content"><!-- Your content goes here --></div>
-							    </section>
+			</form></center></div>
 						    </main>
 						</div>
 					</div>

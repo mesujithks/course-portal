@@ -18,6 +18,17 @@ max-height: 50px;
 width: auto;
 height: auto;
 }
+
+.error {
+  color: rgb(222, 50, 38);
+  position: absolute;
+  font-size: 12px;
+  margin-top: 3px;
+  visibility: visible;
+  display: block; 
+  text-align: center;
+  }
+  
 /*from-fields page*/
 .main_content{
   overflow: hidden !important;

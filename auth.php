@@ -2,7 +2,7 @@
 require('db.php');
 session_start();
 if(!isset($_SESSION["username"])){
-	if(basename($_SERVER['PHP_SELF'])=="index.php" || basename($_SERVER['PHP_SELF'])=="signup.php") {
+	if(basename($_SERVER['PHP_SELF'])=="index.php" || basename($_SERVER['PHP_SELF'])=="signup.php" || basename($_SERVER['PHP_SELF'])=="login.php") {
 			
 	}
 	else {

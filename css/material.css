@@ -8864,13 +8864,15 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
     width: 100%; }
   .mdl-textfield.is-invalid .mdl-textfield__label:after {
     background-color: rgb(222, 50, 38); }
+    
+
 
 .mdl-textfield__error {
   color: rgb(222, 50, 38);
   position: absolute;
   font-size: 12px;
   margin-top: 3px;
-  visibility: hidden;
+  visibility: visible;
   display: block; }
   .mdl-textfield.is-invalid .mdl-textfield__error {
     visibility: visible; }
