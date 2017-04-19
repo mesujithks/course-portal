@@ -175,6 +175,10 @@
 						    <main class="mdl-layout__content">
 						    	<?php echo $successMessage; ?>
 							    <div class="page-content"><center>
+							    <div class="mdl-grid" id="1">
+									<div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+									<h3><strong>Create a new account</strong></h3>
+
 						    	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="signup" id="signupstudent">
 			<div class="login-form-div mdl-grid">
 				
@@ -184,7 +188,7 @@
 					
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<input class="mdl-textfield__input" type="text" id="uname" name="username" value="<?php echo $username; ?>">
-						<label class="mdl-textfield__label" for="uname">Enter Username</label>
+						<label class="mdl-textfield__label" for="uname">Username</label>
 						<span class="error"><?php echo $usernameErr; ?></span>
 						
 			        </div>
@@ -193,7 +197,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<input class="mdl-textfield__input" type="password" id="pwd" name="password" value="<?php echo $password; ?>">
-						<label class="mdl-textfield__label" for="pwd">Enter Password</label>
+						<label class="mdl-textfield__label" for="pwd">Password</label>
 						<span class="error"><?php echo $passwordErr; ?></span>
 			        </div>
 				</div>
@@ -203,7 +207,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<input class="mdl-textfield__input" type="email" id="email" name="email" value="<?php echo $email; ?>">
-						<label class="mdl-textfield__label" for="email">Enter valid Email</label>
+						<label class="mdl-textfield__label" for="email">Email</label>
 						<span class="error"><?php echo $emailErr; ?></span>
 			        </div>
 			      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -292,7 +296,7 @@
 				<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet links">
 					<a class="mdl-button--primary" href="login.php">I have an account alredy, Login Now!</a>
 				</div>		
-			</form></center></div>
+			</form></center></div></div></div>
 						    </main>
 						</div>
 					</div>

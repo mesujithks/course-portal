@@ -84,19 +84,18 @@
 			   	$result2 = mysqli_query($con,$query2);
 			   	if($result2) {
 			   		$username=$password=$email=$phone=$fname=$lname=$address=$dob=$college="";
-			   		$successMessage='<div class="admin-cover-card-wide mdl-card mdl-shadow--2dp">
-					    <div class="mdl-card__title">
-					        <h2 class="mdl-card__title-text">Success!</h2>
-					    </div>
-					    <div class="mdl-card__supporting-text">
-					        Your account is successfully created. You can login now...
-					    </div>
-					    <div class="mdl-card__actions mdl-card--border">
-					        <a href="login.php" target="_blank" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-					            Login
-					        </a>
-					    </div>
-					</div>';
+			   		$successMessage='<div class="mdl-grid portfolio-max-width">
+               			 <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Success!/h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        Your account is successfully created. You can login now...
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="login.php">Login</a>
+                    </div>
+                </div></div>';
 			   		
 			   		}
 				
@@ -137,209 +136,183 @@
     		if(f){
     			f.submit();
     		}
-}    		
+    	}
+    	function gotoLogin()
+    	{
+    		window.location="http://localhost/online-course-portal/login.php";
+    	} 		
     	
     </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-<?php
-
-?>
-
-		<div class="mdl-card mdl-shadow--2dp layout1">
-						<!-- Simple header with fixed tabs. -->
-						<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
-						    <header class="mdl-layout__header">
-							    <div class="mdl-layout__header-row">
-							      <!-- Title -->
-							      <span class="mdl-layout-title">Course Portal Signup</span>
-							      <div class="mdl-layout-spacer"></div>
-							      <nav class="mdl-navigation mdl-layout--large-screen-only">
-							        <a class="mdl-navigation__link" href="index.php">Home</a>
-							        <a class="mdl-navigation__link" href="login.php">Login</a>
-							        <a class="mdl-navigation__link" href="">Courses</a>
-							        <a class="mdl-navigation__link" href="">About</a>
-							      </nav>
-							    </div>
-						    </header>
-						    <div class="mdl-layout__drawer">
-						        <span class="mdl-layout-title">Menu</span>
-						         <nav class="mdl-navigation">
-							      <a class="mdl-navigation__link" href="index.php">Home</a>
-							      <a class="mdl-navigation__link" href="login.php">Login</a>
-							      <a class="mdl-navigation__link" href="">Courses</a>
-							      <a class="mdl-navigation__link" href="">About</a>
-							    </nav>
-						    </div>
-						    <main class="mdl-layout__content">
-						    	<?php echo $successMessage; ?>
-							    <div class="page-content"><center>
-						    	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="signup" id="signupstudent">
-			<div class="login-form-div mdl-grid">
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+            <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">Online Course Portal</span>
+                </span>
+            </div>
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link" href="index.php">Courses</a>
+                    <a class="mdl-navigation__link" href="login.php">Login</a>
+                    <a class="mdl-navigation__link is-active" href="signup.php">SignUp</a>
+                    <a class="mdl-navigation__link" href="about.php">About</a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
+                <a class="mdl-navigation__link" href="blog.html">Blog</a>
+                <a class="mdl-navigation__link" href="about.html">About</a>
+                <a class="mdl-navigation__link" href="contact.html">Contact</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+        	<?php echo $successMessage; ?>
+        	<div class="mdl-grid portfolio-max-width portfolio-contact">
+                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Create new account</h2>
+                    </div>
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/contact-image.jpg" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                    	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="signup" id="signupstudent">
 				
-				<div class="mdl-cell mdl-cell--12-col cell_con">
-					<i class="material-icons">person</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<div class="mdl-cell mdl-cell--12-col cell_con">
+								<i class="material-icons">person</i>
+								
 					
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="uname" name="username" value="<?php echo $username; ?>">
-						<label class="mdl-textfield__label" for="uname">Username</label>
-						<span class="error"><?php echo $usernameErr; ?></span>
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<input class="mdl-textfield__input" type="text" id="uname" name="username" value="<?php echo $username; ?>">
+									<label class="mdl-textfield__label" for="uname">Username</label>
+									<span class="error"><?php echo $usernameErr; ?></span>
 						
-			        </div>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<i class="material-icons">lock</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="password" id="pwd" name="password" value="<?php echo $password; ?>">
-						<label class="mdl-textfield__label" for="pwd">Password</label>
-						<span class="error"><?php echo $passwordErr; ?></span>
-			        </div>
-				</div>
+			        			</div>
+								
+								<i class="material-icons">lock</i>
+								
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<input class="mdl-textfield__input" type="password" id="pwd" name="password" value="<?php echo $password; ?>">
+									<label class="mdl-textfield__label" for="pwd">Password</label>
+									<span class="error"><?php echo $passwordErr; ?></span>
+			       				 </div>
+							</div>
 				
-				<div class="mdl-cell mdl-cell--12-col cell_con">
-					<i class="material-icons">email</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="email" id="email" name="email" value="<?php echo $email; ?>">
-						<label class="mdl-textfield__label" for="email">Email</label>
-						<span class="error"><?php echo $emailErr; ?></span>
-			        </div>
-			      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			        <i class="material-icons">phone</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="phone" name="phone" value="<?php echo $phone; ?>">
-						<label class="mdl-textfield__label" for="phone">Phone Number</label>
-			        </div>
-			   
-			      
-				</div>	
+							<div class="mdl-cell mdl-cell--12-col cell_con">
+								<i class="material-icons">email</i>
+								
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<input class="mdl-textfield__input" type="email" id="email" name="email" value="<?php echo $email; ?>">
+									<label class="mdl-textfield__label" for="email">Email</label>
+									<span class="error"><?php echo $emailErr; ?></span>
+			       				</div>
+			      				
+			       		 		<i class="material-icons">phone</i>
+								
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<input class="mdl-textfield__input" type="text" id="phone" name="phone" value="<?php echo $phone; ?>">
+									<label class="mdl-textfield__label" for="phone">Phone Number</label>
+			       				 </div>   
+							</div>	
 			        
-				<div class="mdl-cell mdl-cell--12-col cell_con">
-					<i class="material-icons">person</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="fname" name="fname" value="<?php echo $fname; ?>">
-						<label class="mdl-textfield__label" for="fname">First Name</label>
-						<span class="error"><?php echo $fnameErr; ?></span>
-			        </div>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<i class="material-icons">person</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="lname" name="lname" value="<?php echo $lname; ?>">
-						<label class="mdl-textfield__label" for="lname">Last Name</label>
-						<span class="error"><?php echo $lnameErr; ?></span>
-			        </div>
-			   </div>
+							<div class="mdl-cell mdl-cell--12-col cell_con">
+								<i class="material-icons">person</i>
+								
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<input class="mdl-textfield__input" type="text" id="fname" name="fname" value="<?php echo $fname; ?>">
+									<label class="mdl-textfield__label" for="fname">First Name</label>
+									<span class="error"><?php echo $fnameErr; ?></span>
+			        			</div>
+								
+								<i class="material-icons">person</i>
+								
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<input class="mdl-textfield__input" type="text" id="lname" name="lname" value="<?php echo $lname; ?>">
+									<label class="mdl-textfield__label" for="lname">Last Name</label>
+									<span class="error"><?php echo $lnameErr; ?></span>
+			        			</div>
+			   			</div>
 			   
-			   <div class="mdl-cell mdl-cell--12-col cell_con">
-					<i class="material-icons">today</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="dob" id="lname" name="dob" value="<?php echo $dob; ?>">
-						<label class="mdl-textfield__label" for="dob">Date of Birth (YYYY-MM-DD)</label>
-						<span class="error"><?php echo $dobErr; ?></span>
-			        </div>
-			   </div>
+			   			<div class="mdl-cell mdl-cell--12-col cell_con">
+							<i class="material-icons">today</i>
+							
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								<input class="mdl-textfield__input" type="dob" id="lname" name="dob" value="<?php echo $dob; ?>">
+								<label class="mdl-textfield__label" for="dob">Date of Birth (YYYY-MM-DD)</label>
+								<span class="error"><?php echo $dobErr; ?></span>
+			        		</div>
+			   			</div>
 			   
-			   <div class="mdl-cell mdl-cell--12-col cell_con">
-					<i class="material-icons">home</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			   			<div class="mdl-cell mdl-cell--12-col cell_con">
+							<i class="material-icons">home</i>
+							
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 								<textarea class="mdl-textfield__input" type="text" rows= "3" id="address" name="address" value="<?php echo $address; ?>"></textarea>
 								<label class="mdl-textfield__label" for="address">Address</label>
 						    </div>
-			        </div>
-				</div>
+			        	</div>
 				
-				<div class="mdl-cell mdl-cell--12-col cell_con">
-			        <i class="material-icons">person</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-     					<input class="mdl-textfield__input" value="Male" type="text" id="gender" name="gender" readonly tabIndex="-1" />
-       				<label class="mdl-textfield__label" for="gender">Gender</label>
-       					<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="gender">
-        					 	<li class="mdl-menu__item">Male</li>
-        						<li class="mdl-menu__item">Female</li>
-       					</ul>
-   				</div>
-   			</div>
+						<div class="mdl-cell mdl-cell--12-col cell_con">
+			        		<i class="material-icons">person</i>
+							<br />
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+     							<input class="mdl-textfield__input" value="Male" type="text" id="gender" name="gender" readonly tabIndex="-1" />
+       							<label class="mdl-textfield__label" for="gender">Gender</label>
+       							<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="gender">
+        					 		<li class="mdl-menu__item">Male</li>
+        							<li class="mdl-menu__item">Female</li>
+       							</ul>
+   							</div>
+   						</div>
 				
-				<div class="mdl-cell mdl-cell--12-col cell_con">
-					<i class="material-icons">work</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="college" name="college" value="<?php echo $college; ?>">
-						<label class="mdl-textfield__label" for="college">College or Institution</label>
-						<span class="error"><?php echo $collegeErr; ?></span>
-			        </div>
-			   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<i class="material-icons">person</i>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input class="mdl-textfield__input" type="text" id="type" name="type" value="student" readonly>
-						<label class="mdl-textfield__label" for="college">Account Type</label>
-			        </div>
-			   </div>
+						<div class="mdl-cell mdl-cell--12-col cell_con">
+							<i class="material-icons">work</i>
+							
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								<input class="mdl-textfield__input" type="text" id="college" name="college" value="<?php echo $college; ?>">
+								<label class="mdl-textfield__label" for="college">College or Institution</label>
+								<span class="error"><?php echo $collegeErr; ?></span>
+			        		</div>
+			   				
+							<i class="material-icons">person</i>
+							
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								<input class="mdl-textfield__input" type="text" id="type" name="type" value="student" readonly>
+								<label class="mdl-textfield__label" for="college">Account Type</label>
+			        		</div>
+			   			</div>
 				
-				<div class="mdl-cell mdl-cell--12-col  login-btn-con">
-					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary btn" onclick="postSignupStudent()">Signup</button>
-				</div>
-				
-				<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet links">
-					<a class="mdl-button--primary" href="login.php">I have an account alredy, Login Now!</a>
-				</div>		
-			</form></center></div>
-						    </main>
+						<div class="mdl-cell mdl-cell--12-col  login-btn-con">
+							<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary btn" onclick="postSignupStudent()">Signup</button>
 						</div>
-					</div>
-
+				
+						<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet links">
+							<a class="mdl-button--primary" href="login.php">I have an account alredy, Login Now!</a>
+						</div>		
+					</form>
+				</div>
+			</div>
+		</div>
+		<footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">Simple portfolio website</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Privacy & Terms</a></li>
+                    </ul>
+                </div>
+	</main>
 </body>
 
-<footer class="mdl-mega-footer">
-	<div class="mdl-mega-footer__middle-section">
-		  <div class="mdl-mega-footer__drop-down-section"> 
-		  		<input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-		  		<h1 class="mdl-mega-footer__heading">Features</h1> 
-		  		<ul class="mdl-mega-footer__link-list"> 
-				  	<li><a href="#">About</a></li> 
-				  	<li><a href="#">Terms</a></li>
-				  	<li><a href="#">Partners</a></li>
-					<li><a href="#">Updates</a></li>
-				</ul> 
-			</div>
-		<div class="mdl-mega-footer__drop-down-section">
-			 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-			 <h1 class="mdl-mega-footer__heading">Details</h1> 
-			 <ul class="mdl-mega-footer__link-list"> 
-				 <li><a href="#">Specs</a></li> 
-				 <li><a href="#">Tools</a></li> 
-				 <li><a href="#">Resources</a></li> 
-			 </ul> 
-		 </div> 
-	 <div class="mdl-mega-footer__drop-down-section"> 
-		 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-		 <h1 class="mdl-mega-footer__heading">Technology</h1> 
-		 <ul class="mdl-mega-footer__link-list"> 
-			 <li><a href="#">How it works</a></li> 
-			 <li><a href="#">Patterns</a></li> 
-			 <li><a href="#">Usage</a></li> 
-			 <li><a href="#">Products</a></li> 
-			 <li><a href="#">Contracts</a></li> 
-		 </ul> 
-	 </div>
-	 <div class="mdl-mega-footer__drop-down-section"> 
-		 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-		 <h1 class="mdl-mega-footer__heading">FAQ</h1> 
-		 <ul class="mdl-mega-footer__link-list"> 
-			 <li><a href="#">Questions</a></li> 
-			 <li><a href="#">Answers</a></li> 
-			 <li><a href="#">Contact us</a></li> 
-		 </ul> 
-	 </div>
+<!--<footer class="mdl-mega-footer">
 	<div class="mdl-mega-footer__bottom-section"> 
 		<div class="mdl-logo">Title</div> 
 		<ul class="mdl-mega-footer__link-list"> 
@@ -347,6 +320,6 @@
 			<li><a href="#">Privacy & Terms</a></li> 
 		</ul> 
 	</div> 
-</footer>
+</footer>-->
 
 </html>

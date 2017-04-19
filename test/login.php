@@ -2,7 +2,7 @@
 	include("auth.php");
 	require('db.php');
 	
-	$usenameErr=$passwordErr=$username=$password=$loginErr="";
+	$usenameErr=$passwordErr=$username=$password="";
 	$flag=0;
    
    if ($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -45,7 +45,7 @@
 						header("Location: index.php"); // Redirect user to index.php
 						}
 		         }else{
-							$loginErr="Invalid Username/Password, Try again.!";
+							$passwordErr="Invalid Username/Password, Try again.!";
 						}
 				
 				}
@@ -113,8 +113,12 @@
 							    </nav>
 						    </div>
 						    <main class="mdl-layout__content">
-						    	<div class="page-content"><center><h3><strong>Login To Your Account</strong></h3>
-						    	<form action="" method="post" name="login" id="getlogin">
+						    <div class="page-content">
+						    	<div class="mdl-grid ">
+									<div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+
+						    	<center><h3><strong>Login To Your Account</strong></h3>
+						    	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="login" id="getlogin">
 			<div class="login-form-div mdl-grid mdl-shadow--2dp">
 				
 				<div class="mdl-cell mdl-cell--12-col cell_con">
@@ -137,8 +141,7 @@
 				</div>
 				
 				<div class="mdl-cell mdl-cell--12-col  login-btn-con">
-					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary btn" onclick="postLogin()">Login</button>
-					<center><span class="error"><?php echo $loginErr; ?></span></center>
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn" onclick="postLogin()">Login</button>
 				</div>
 				
 				<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet links">
@@ -147,7 +150,7 @@
 				<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet links">
 					<a class="mdl-button--primary">Forgot password ?</a>
 				</div>		
-			</div></form></div></center>
+			</div></form></center></div></div></div>
 						    </main>
 						</div>
 					</div>	

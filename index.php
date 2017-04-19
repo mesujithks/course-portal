@@ -1,10 +1,28 @@
-<?php
-/*
-Author: Javed Ur Rehman
-Website: http://www.allphptricks.com/
-*/
+<?php include("auth.php"); 
+require('db.php');
 
-include("auth.php"); //include auth.php file on all secure pages ?><!DOCTYPE html>
+$coure_cards="";
+$sql = "SELECT * FROM `courses`";
+$result1 = mysqli_query($con,$sql) or die(mysql_error());
+if (mysqli_num_rows($result1)>0) {
+  while ($row=mysqli_fetch_assoc($result1)) {
+    $coure_cards.='<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src="'.$row["courseImage"].'" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">'.$row["courseName"].'</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">'.$row["shortD"].'</div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="course.php?id='.$row["courseId"].'">Read more</a>
+                    </div></div>';
+}
+  
+  }
+
+?>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -19,86 +37,49 @@ include("auth.php"); //include auth.php file on all secure pages ?><!DOCTYPE htm
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+            <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">Online Course Portal</span>
+                </span>
+            </div>
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link is-active" href="index.php">Courses</a>
+                    <a class="mdl-navigation__link" href="login.php">Login</a>
+                    <a class="mdl-navigation__link" href="signup.php">SignUp</a>
+                    <a class="mdl-navigation__link" href="about.php">About</a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                <a class="mdl-navigation__link is-active" href="index.html">Courses</a>
+                <a class="mdl-navigation__link" href="login.php">Login</a>
+                <a class="mdl-navigation__link" href="signup.php">SignUp</a>
+                <a class="mdl-navigation__link" href="about.php">About</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-grid portfolio-max-width">
+                <?php echo $coure_cards; ?>
+            </div>
+        	<footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">Simple portfolio website</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Privacy & Terms</a></li>
+                    </ul>
+                </div>
+        </main>
+     </div>
 
-	<div class="mdl-card mdl-shadow--2dp layout1">
-						<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-						    <header class="mdl-layout__header">
-							    <div class="mdl-layout__header-row">
-							      <span class="mdl-layout-title">Course Portal</span>
-							      <div class="mdl-layout-spacer"></div>
-							      <nav class="mdl-navigation mdl-layout--large-screen-only">
-							        <a class="mdl-navigation__link" href="login.php">Login</a>
-							        <a class="mdl-navigation__link" href="signup.php">Signup</a>
-							        <a class="mdl-navigation__link" href="">Courses</a>
-							        <a class="mdl-navigation__link" href="">About</a>
-							      </nav>
-							    </div>
-						    </header>
-						    <div class="mdl-layout__drawer">
-							    <span class="mdl-layout-title">Menu</span>
-							    <nav class="mdl-navigation">
-							      <a class="mdl-navigation__link" href="login.php">Login</a>
-							      <a class="mdl-navigation__link" href="signup.php">Signup</a>
-							      <a class="mdl-navigation__link" href="">Courses</a>
-							      <a class="mdl-navigation__link" href="">About</a>
-							    </nav>
-						    </div>
-						    <main class="mdl-layout__content">
-						    	<div class="page-content"><!-- Your content goes here --></div>
-						    </main>
-						</div>
-					</div>	
-					
 </body>
 
-<footer class="mdl-mega-footer">
-	<div class="mdl-mega-footer__middle-section">
-		  <div class="mdl-mega-footer__drop-down-section"> 
-		  		<input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-		  		<h1 class="mdl-mega-footer__heading">Features</h1> 
-		  		<ul class="mdl-mega-footer__link-list"> 
-				  	<li><a href="#">About</a></li> 
-				  	<li><a href="#">Terms</a></li>
-				  	<li><a href="#">Partners</a></li>
-					<li><a href="#">Updates</a></li>
-				</ul> 
-			</div>
 
-		<div class="mdl-mega-footer__drop-down-section">
-			 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-			 <h1 class="mdl-mega-footer__heading">Details</h1> 
-			 <ul class="mdl-mega-footer__link-list"> 
-				 <li><a href="#">Specs</a></li> 
-				 <li><a href="#">Tools</a></li> 
-				 <li><a href="#">Resources</a></li> 
-			 </ul> 
-		 </div> 
-	 <div class="mdl-mega-footer__drop-down-section"> 
-		 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-		 <h1 class="mdl-mega-footer__heading">Technology</h1> 
-		 <ul class="mdl-mega-footer__link-list"> 
-			 <li><a href="#">How it works</a></li> 
-			 <li><a href="#">Patterns</a></li> 
-			 <li><a href="#">Usage</a></li> 
-			 <li><a href="#">Products</a></li> 
-			 <li><a href="#">Contracts</a></li> 
-		 </ul> 
-	 </div>
-	 <div class="mdl-mega-footer__drop-down-section"> 
-		 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-		 <h1 class="mdl-mega-footer__heading">FAQ</h1> 
-		 <ul class="mdl-mega-footer__link-list"> 
-			 <li><a href="#">Questions</a></li> 
-			 <li><a href="#">Answers</a></li> 
-			 <li><a href="#">Contact us</a></li> 
-		 </ul> 
-	 </div>
-	<div class="mdl-mega-footer__bottom-section"> 
-		<div class="mdl-logo">Title</div> 
-		<ul class="mdl-mega-footer__link-list"> 
-			<li><a href="#">Help</a></li> 
-			<li><a href="#">Privacy & Terms</a></li> 
-		</ul> 
-	</div> 
-</footer>
 </html>
