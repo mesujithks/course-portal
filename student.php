@@ -18,6 +18,26 @@ include("auth.php");
 		$row=$result->fetch_assoc();	
 		$name=$row["fname"]." ".$row["lname"];
 	}
+
+	$coure_cards="";
+	$sql = "SELECT * FROM `courses`";
+	$result1 = mysqli_query($con,$sql) or die(mysql_error());
+	if (mysqli_num_rows($result1)>0) {
+  		while ($row=mysqli_fetch_assoc($result1)) {
+    		$coure_cards.='<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src="'.$row["courseImage"].'" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">'.$row["courseName"].'</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">'.$row["shortD"].'</div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="course.php?id='.$row["courseId"].'">Read more</a>
+                    </div></div>';
+		}
+  
+ 	 }
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,108 +55,74 @@ include("auth.php");
 </head>
 <body>
 
-	<div class="mdl-card mdl-shadow--2dp layout1">
-						<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-						    <header class="mdl-layout__header">
-							    <div class="mdl-layout__header-row">
-							      <span class="mdl-layout-title">Course Portal Student Panel</span>
-							      <div class="mdl-layout-spacer"></div>
-							      <nav class="mdl-navigation mdl-layout--large-screen-only">
-							        <a class="mdl-navigation__link" href="logout.php">Logout</a>
-							        <a class="mdl-navigation__link" href="">Courses</a>
-							        <a class="mdl-navigation__link" href="">About</a>
-							      </nav>
-							    </div>
-						    </header>
-						    <div class=" mdl-layout__drawer">
-						    	<div class="layout__drawer_custom">
-						    	    <div class="mdl-grid">
-						    	    	<div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet ">
- 						    	    		<center><img class="dp_img" src="img/admin-dp.png" class="avatar"> 
- 						    	    		<p><strong><?php echo $name; ?></strong>
- 						    	    		<nav class="mdl-navigation">
-						    		    		<a id="submenu" class="mdl-navigation__link" href="#"><strong>
-						    		    		<?php echo $email; ?>&#x25BC;</strong></a>
- 						    	    		</nav></center>
- 						    	    		<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="submenu">
- 						    	    			<li class="mdl-menu__item"><a class="mdl-navigation__link" href="logout.php">Logout</a></li>
- 						    	    		</ul>
- 						    	    		<hr>
-					    		        </div>
-						    		    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
-						    		    	<nav class="mdl-navigation">
-						    		    		<a class="mdl-navigation__link" href="#">Nav link 2</a>
-						    		    		<a class="mdl-navigation__link" href="#">Nav link 2</a>
-						    		    		<a class="mdl-navigation__link" href="#">Nav link 3</a>
-						    		    	</nav>
-						    		    </div></p>
-						    	    </div>	
-						    	</div>					    
-						    </div>
-						    <main class="mdl-layout__content">
-						    	<div class="admin-cover-card-wide mdl-card mdl-shadow--2dp">
-					   				 <div class="mdl-card__title">
-					      				  <h2 class="mdl-card__title-text">Welcome <?php echo $name; ?></h2>
-					 				   </div>
-								   	<div class="mdl-card__supporting-text">
-					       			 One person with passion is better than ten with interest..!
-					    				</div>
-					    				
-									</div>
-						    </main>
-						</div>
-					</div>	
-					
-</body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+            <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">Course Portal - Student Panel</span>
+                </span>
+            </div>
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link is-active" href="student.php">Dashboard</a>
+                    <a class="mdl-navigation__link" href="student-courses.php">Registered Courses</a>
+                    <a class="mdl-navigation__link" href="student-edit.php">Edit Details</a>
+                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
+                </nav>
+            </div>
+        </header>
+        
 
-<footer class="mdl-mega-footer">
-	<div class="mdl-mega-footer__middle-section">
-		  <div class="mdl-mega-footer__drop-down-section"> 
-		  		<input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-		  		<h1 class="mdl-mega-footer__heading">Features</h1> 
-		  		<ul class="mdl-mega-footer__link-list"> 
-				  	<li><a href="#">About</a></li> 
-				  	<li><a href="#">Terms</a></li>
-				  	<li><a href="#">Partners</a></li>
-					<li><a href="#">Updates</a></li>
-				</ul> 
+        <div class="demo-drawer mdl-layout__drawer mdl-color--grey-pink-900 mdl-color-text--grey-pink-50">
+        <header class="demo-drawer-header"><center>
+          <img src="img/admin-dp.png" class="dp_img"><br /><strong><?php echo $name; ?></strong>
+          <div class="demo-avatar-dropdown">
+            <span><?php echo $email; ?></span>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item"><a class="mdl-navigation__link" href="logout.php">Logout</a></li>
+            </ul>
+          </div></center>
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--grey-pink-800">
+          <a class="mdl-navigation__link" href="student.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">home</i>Dashboard</a>
+          <a class="mdl-navigation__link" href="student-courses.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">inbox</i>Registered Courses</a>
+          <a class="mdl-navigation__link" href="student-edit.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">delete</i>Edit Details</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">report</i>Contact</a>
+        </nav>
+      	</div>
+
+		<main class="mdl-layout__content">
+			<div class="admin-cover-card-wide mdl-card mdl-shadow--2dp">
+				<div class="mdl-card__title">
+					<h2 class="mdl-card__title-text">Welcome <?php echo $name; ?></h2>
+				</div>
+				<div class="mdl-card__supporting-text">
+					One person with passion is better than ten with interest..!
+				</div>
+					    				
 			</div>
-		<div class="mdl-mega-footer__drop-down-section">
-			 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-			 <h1 class="mdl-mega-footer__heading">Details</h1> 
-			 <ul class="mdl-mega-footer__link-list"> 
-				 <li><a href="#">Specs</a></li> 
-				 <li><a href="#">Tools</a></li> 
-				 <li><a href="#">Resources</a></li> 
-			 </ul> 
-		 </div> 
-	 <div class="mdl-mega-footer__drop-down-section"> 
-		 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-		 <h1 class="mdl-mega-footer__heading">Technology</h1> 
-		 <ul class="mdl-mega-footer__link-list"> 
-			 <li><a href="#">How it works</a></li> 
-			 <li><a href="#">Patterns</a></li> 
-			 <li><a href="#">Usage</a></li> 
-			 <li><a href="#">Products</a></li> 
-			 <li><a href="#">Contracts</a></li> 
-		 </ul> 
-	 </div>
-	 <div class="mdl-mega-footer__drop-down-section"> 
-		 <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked> 
-		 <h1 class="mdl-mega-footer__heading">FAQ</h1> 
-		 <ul class="mdl-mega-footer__link-list"> 
-			 <li><a href="#">Questions</a></li> 
-			 <li><a href="#">Answers</a></li> 
-			 <li><a href="#">Contact us</a></li> 
-		 </ul> 
-	 </div>
-	<div class="mdl-mega-footer__bottom-section"> 
-		<div class="mdl-logo">Title</div> 
-		<ul class="mdl-mega-footer__link-list"> 
-			<li><a href="#">Help</a></li> 
-			<li><a href="#">Privacy & Terms</a></li> 
-		</ul> 
-	</div> 
-</footer>
+			<div class="mdl-grid portfolio-max-width">
+				<?php echo $coure_cards; ?>
+			</div>
+
+			<footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">Course Portal</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Privacy & Terms</a></li>
+                    </ul>
+                </div>
+		</main>					    	
+	</div>
+						   					
+</body>
 
 </html>

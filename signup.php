@@ -165,10 +165,10 @@
         </header>
         <div class="mdl-layout__drawer mdl-layout--small-screen-only">
             <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
-                <a class="mdl-navigation__link" href="blog.html">Blog</a>
-                <a class="mdl-navigation__link" href="about.html">About</a>
-                <a class="mdl-navigation__link" href="contact.html">Contact</a>
+                <a class="mdl-navigation__link" href="index.php">Courses</a>
+                <a class="mdl-navigation__link" href="login.php">Login</a>
+                <a class="mdl-navigation__link is-active" href="signup.php">SignUp</a>
+                <a class="mdl-navigation__link" href="about.php">About</a>
             </nav>
         </div>
         <main class="mdl-layout__content">
@@ -289,7 +289,7 @@
 			   			</div>
 				
 						<div class="mdl-cell mdl-cell--12-col  login-btn-con">
-							<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary btn" onclick="postSignupStudent()">Signup</button>
+							<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn" onclick="postSignupStudent()">Signup</button>
 						</div>
 				
 						<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet links">
@@ -301,7 +301,7 @@
 		</div>
 		<footer class="mdl-mini-footer">
                 <div class="mdl-mini-footer__left-section">
-                    <div class="mdl-logo">Simple portfolio website</div>
+                    <div class="mdl-logo">Course Portal</div>
                 </div>
                 <div class="mdl-mini-footer__right-section">
                     <ul class="mdl-mini-footer__link-list">
@@ -311,15 +311,5 @@
                 </div>
 	</main>
 </body>
-
-<!--<footer class="mdl-mega-footer">
-	<div class="mdl-mega-footer__bottom-section"> 
-		<div class="mdl-logo">Title</div> 
-		<ul class="mdl-mega-footer__link-list"> 
-			<li><a href="#">Help</a></li> 
-			<li><a href="#">Privacy & Terms</a></li> 
-		</ul> 
-	</div> 
-</footer>-->
 
 </html>

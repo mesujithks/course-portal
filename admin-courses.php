@@ -21,7 +21,7 @@ if (mysqli_num_rows($result1)>0) {
   
   } 
   
-  $coursenameErr=$shortdErr=$longdErr=$coursename=$shortd=$longd=$successMessage=$course=$courseErr=$title=$titleErr=$body=$bodyErr="";
+  $coursenameErr=$shortdErr=$longdErr=$coursename=$shortd=$longd=$successMessage=$course=$courseErr=$title=$titleErr=$body=$bodyErr=$courses=$coursesErr="";
 
   $tab1_a=" is-active";
   $tab2_a=$tab3_a="";
@@ -103,7 +103,7 @@ if (mysqli_num_rows($result1)>0) {
         $cid=$row["courseId"];
       }
 
-      if($flag1==0) {
+      if($flag==0) {
         $query = "INSERT into `contents` (cId, title, body, post_date) VALUES ($cid, '$title', '$body', '$post_date')";
         $result = mysqli_query($con,$query);
         if($result){
@@ -119,8 +119,42 @@ if (mysqli_num_rows($result1)>0) {
                 </div></div>';
         }
       }
+    }elseif ($_POST['deleteC']=="deleteC") {
+      $flag=0;
+      $tab3_a="is-active";
+      $tab1_a=$tab2_a="";
+      if(empty($_POST["courses"])) {
+        $coursesErr="Select a course first.";
+        $flag=1;
+      }
+      else {
+        $courses = test_input($_POST['courses']);
+      }
+
+      $result2 = mysqli_query($con,"SELECT * FROM `courses` WHERE courseName = '$courses'") or die(mysql_error());
+      if (mysqli_num_rows($result2)==1) {
+        $row=mysqli_fetch_assoc($result2);
+         $cid=$row["courseId"];     
+      }
+      
+      if($flag==0) {
+        $query = "DELETE FROM `courses` WHERE `courses`.`courseId` = $cid";
+        echo $query;
+        $result = mysqli_query($con,$query);
+        if($result){
+          $courses=$coursesErr="";
+          $successMessage='<div class="mdl-grid portfolio-max-width">
+                     <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Success!</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        Course is successfully deleted.
+                    </div>
+                </div></div>';
+        }
+      }
     }
-    
   }
 
   function test_input($data) {
@@ -156,6 +190,14 @@ if (mysqli_num_rows($result1)>0) {
       function postContent()
       {
         f=document.getElementsById('postcontent');
+        if (f) {
+          f.submit();
+        }
+      }
+
+      function deleteCourse()
+      {
+        f=document.getElementsById('deletecourse');
         if (f) {
           f.submit();
         }
@@ -206,7 +248,7 @@ if (mysqli_num_rows($result1)>0) {
       	</div>
 
 		<main class="mdl-layout__content">
-        <?php echo $successMessage; $successMessage=""; ?>
+        <?php echo $successMessage; $successMessage="";  ?>
         <br />
         <div class="mdl-shadow--2dp">
             <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
@@ -216,7 +258,7 @@ if (mysqli_num_rows($result1)>0) {
                 <a href="#tab-3" class="mdl-tabs__tab <?php echo $tab3_a; ?>">DELETE COURSE</a>
               </div>
 
-              <div class="mdl-tabs__panel is-active" id="tab-1">
+              <div class="mdl-tabs__panel <?php echo $tab1_a; ?>" id="tab-1">
                   <center><form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="addcourse" id="addcourse">
                       <input type="hidden" name="addC" value="addC">
               <div class="mdl-cell mdl-cell--6-col cell_con">
@@ -257,7 +299,7 @@ if (mysqli_num_rows($result1)>0) {
             <br />
               </div>
 
-              <div class="mdl-tabs__panel" id="tab-2">
+              <div class="mdl-tabs__panel <?php echo $tab2_a; ?>" id="tab-2">
                    <center><form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="postcontent" id="postcontent">
                       <input type="hidden" name="postC" value="postC">
 
@@ -303,15 +345,27 @@ if (mysqli_num_rows($result1)>0) {
             <br />
 
                 </div>
-              <div class="mdl-tabs__panel" id="tab-3">
-                   <p>This is Tab 3</p>
-                   <ul>
-                      <li>Option 1</li>
-                    <li>Option 2</li>
-                      <li>Option 3</li>
-                      <li>Option 4</li>
-                      <li>Option 5</li>
-                  </ul>
+              <div class="mdl-tabs__panel <?php echo $tab3_a; ?>" id="tab-3">
+                   <center><form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="deletecourse" id="deletecourse">
+                      <input type="hidden" name="deleteC" value="deleteC">
+
+                <div class="mdl-cell mdl-cell--6-col cell_con">
+                <i class="material-icons">person</i>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                  <input class="mdl-textfield__input" value="<?php echo $courses ?>" type="text" id="courses" name="courses" readonly tabIndex="-1" />
+                    <label class="mdl-textfield__label" for="courses">Course</label>
+                    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="courses">
+                      <?php echo $list; ?>
+                    </ul>
+                    <span class="error"><?php echo $coursesErr; ?></span>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col  login-btn-con">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn" onclick="deleteCourse()">DELETE COURSE</button>
+              </div>
+           
+            </form></center>
+            <br />
               </div>
             </div>
             </div>
@@ -320,7 +374,7 @@ if (mysqli_num_rows($result1)>0) {
 					    				
 	     <footer class="mdl-mini-footer">
                 <div class="mdl-mini-footer__left-section">
-                    <div class="mdl-logo">Simple portfolio website</div>
+                    <div class="mdl-logo">Course Portal</div>
                 </div>
                 <div class="mdl-mini-footer__right-section">
                     <ul class="mdl-mini-footer__link-list">
@@ -329,7 +383,7 @@ if (mysqli_num_rows($result1)>0) {
                     </ul>
                 </div>
       </footer>
-		</main>					    	
+			    	</main>
 	</div>
 						   					
 </body>
