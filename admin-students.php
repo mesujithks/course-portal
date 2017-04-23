@@ -9,6 +9,45 @@ $rows = mysqli_num_rows($result);
 	$row=$result->fetch_assoc();
 	$email=$row["email"];
 	}
+  $successMessage="";
+  if (isset($_REQUEST["id"])) {
+    $uid=$_REQUEST['id'];
+    $query = "DELETE FROM `users` WHERE id=$uid";
+    $result = mysqli_query($con,$query) or die(mysql_error());
+    if($result){
+      $successMessage='<div class="mdl-grid portfolio-max-width">
+                     <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Success!</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        Student is successfully deleted.
+                    </div>
+                </div></div>';
+    }
+ 
+  }
+
+    $tableRow="";
+    $query = "SELECT * FROM `students`";
+    $result = mysqli_query($con,$query) or die(mysql_error());
+    if (mysqli_num_rows($result)>0) {
+        while ($row=mysqli_fetch_assoc($result)) {
+            $sid=$row['studentId'];
+ 
+            $tableRow.='<tr><td>'.$sid.'</td><td class="mdl-data-table__cell--non-numeric">'.$row["fname"]." ".$row["lname"].'</td>
+                                <td>
+                                    <div class="mdl-cell mdl-cell--12-col  login-btn-con">
+                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="student-view.php?id='.$sid.'">view</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mdl-cell mdl-cell--12-col  login-btn-con">
+                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--primary" href="'.htmlspecialchars($_SERVER["PHP_SELF"]).'?id='.$sid.'">Delete</a>
+                                    </div>
+                                </td></tr>';
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,10 +75,10 @@ $rows = mysqli_num_rows($result);
             </div>
             <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link is-active" href="admin.php">Dashboard</a>
+                    <a class="mdl-navigation__link" href="admin.php">Dashboard</a>
                     <a class="mdl-navigation__link" href="admin-courses.php">Courses</a>
                     <a class="mdl-navigation__link" href="admin-contents.php">Contents</a>
-                    <a class="mdl-navigation__link" href="admin-students.php">Students</a>
+                    <a class="mdl-navigation__link is-active" href="admin-students.php">Students</a>
                     <a class="mdl-navigation__link" href="contact.html">Contact</a>
                 </nav>
             </div>
@@ -70,15 +109,24 @@ $rows = mysqli_num_rows($result);
       	</div>
 
 		<main class="mdl-layout__content">
-			<div class="admin-cover-card-wide mdl-card mdl-shadow--2dp">
-				<div class="mdl-card__title">
-					<h2 class="mdl-card__title-text">Welcome Administrator</h2>
-				</div>
-				<div class="mdl-card__supporting-text">
-					One person with passion is better than ten with interest..!
-				</div>
-					    				
-			</div>
+    <?php echo $successMessage; ?>
+      <div class="mdl-grid portfolio-max-width portfolio-contact">
+      <center>
+            <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th class="mdl-data-table__cell--non-numeric">Name</th>
+                              <th></th>
+                              <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <?php echo $tableRow; ?>
+                        </tbody>
+                    </table></center>
+                </div>
+			
 
 			<footer class="mdl-mini-footer">
                 <div class="mdl-mini-footer__left-section">

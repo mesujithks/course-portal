@@ -1,54 +1,77 @@
 <?php
 include("auth.php"); 
 
-	$username=$_SESSION["username"];
-	$query = "SELECT * FROM `users`,`students` WHERE username='$username' AND studentId=id";
-	$result = mysqli_query($con,$query) or die(mysql_error());
-	$rows = mysqli_num_rows($result);
-	if($rows==1){
-		$row=$result->fetch_assoc();			
-		$id=$row["id"];
-		$email=$row["email"];	
-		$name=$row["fname"]." ".$row["lname"];
-	}
+    $username=$_SESSION["username"];
+    $query = "SELECT * FROM `users`,`students` WHERE username='$username' AND studentId=id";
+    $result = mysqli_query($con,$query) or die(mysql_error());
+    $rows = mysqli_num_rows($result);
+    if($rows==1){
+        $row=$result->fetch_assoc();            
+        $id=$row["id"];
+        $email=$row["email"];   
+        $name=$row["fname"]." ".$row["lname"];
+    }
+    
+    if (isset($_REQUEST['id'])){
+    $cid=$_REQUEST['id'];
 
-	$coure_cards="";
-	$sql = "SELECT * FROM `courses`";
-	$result1 = mysqli_query($con,$sql) or die(mysql_error());
-	if (mysqli_num_rows($result1)>0) {
-  		while ($row=mysqli_fetch_assoc($result1)) {
-    		$coure_cards.='<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src="'.$row["courseImage"].'" border="0" alt="">
-                    </div>
+    $cname="";
+    $coure_contents="";
+    $sql = "SELECT * FROM `contents`,`courses` WHERE cId=$cid AND courseId=cId ORDER BY post_date DESC";
+    $result1 = mysqli_query($con,$sql) or die(mysql_error());
+    if (mysqli_num_rows($result1)>0) {
+        while ($row=mysqli_fetch_assoc($result1)){
+            $coure_contents.='<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">'.$row["courseName"].'</h2>
+                        <h2 class="mdl-card__title-text">'.$row["title"].'</h2>
                     </div>
-                    <div class="mdl-card__supporting-text">'.$row["shortD"].'</div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="course.php?id='.$row["courseId"].'">Read more</a>
-                    </div></div>';
-		}
+                    <div class="mdl-card__supporting-text">
+                        <span>'.$row["post_date"].'</span>
+                        <p>'.$row["body"].'</p>
+                    </div>
+                </div>';
+            $cname=$row["courseName"];
+            }
   
- 	 }
+    }
+    else $coure_contents='<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Conents Unavailable</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <p>Currently no conents is posted for this course.</p>
+                    </div>
+                </div>';
+
+}
 ?>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Online Course Portal- Student Panel</title>
+    <title>Online Course Portal- Home</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/material.min.css">
     <link rel="stylesheet" href="css/materialdesignicons.css" media="all" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
     <script src="js/material.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-<body>
+    <script type="text/javascript">
+        function register() {
+            f=document.getElementsById('register');
+            if (f) {
+             f.submit();
+            }
+        }
+    </script>
 
-	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
             <div class="mdl-layout__header-row portfolio-logo-row">
                 <span class="mdl-layout__title">
@@ -87,23 +110,15 @@ include("auth.php");
           <a class="mdl-navigation__link" href="student-edit.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">delete</i>Edit Details</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">report</i>Contact</a>
         </nav>
-      	</div>
+        </div>
+        
+        <main class="mdl-layout__content">
+            <div class="mdl-grid portfolio-max-width portfolio-contact">
+                <center><h5><?php echo $cname; ?></h5></center>
+                <?php echo $coure_contents; ?>
+            </div>
 
-		<main class="mdl-layout__content">
-			<div class="admin-cover-card-wide mdl-card mdl-shadow--2dp">
-				<div class="mdl-card__title">
-					<h2 class="mdl-card__title-text">Welcome <?php echo $name; ?></h2>
-				</div>
-				<div class="mdl-card__supporting-text">
-					One person with passion is better than ten with interest..!
-				</div>
-					    				
-			</div>
-			<div class="mdl-grid portfolio-max-width">
-				<?php echo $coure_cards; ?>
-			</div>
-
-			<footer class="mdl-mini-footer">
+            <footer class="mdl-mini-footer">
                 <div class="mdl-mini-footer__left-section">
                     <div class="mdl-logo">Course Portal</div>
                 </div>
@@ -113,9 +128,8 @@ include("auth.php");
                         <li><a href="#">Privacy & Terms</a></li>
                     </ul>
                 </div>
-		</main>					    	
-	</div>
-						   					
+            </footer></main>
+    </div>
 </body>
 
 </html>

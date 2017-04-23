@@ -1,36 +1,46 @@
 <?php
 include("auth.php"); 
 
-	$username=$_SESSION["username"];
-	$query = "SELECT * FROM `users`,`students` WHERE username='$username' AND studentId=id";
-	$result = mysqli_query($con,$query) or die(mysql_error());
-	$rows = mysqli_num_rows($result);
-	if($rows==1){
-		$row=$result->fetch_assoc();			
-		$id=$row["id"];
-		$email=$row["email"];	
-		$name=$row["fname"]." ".$row["lname"];
-	}
+    $username=$_SESSION["username"];
+    $query = "SELECT * FROM `users`,`students` WHERE username='$username' AND studentId=id";
+    $result = mysqli_query($con,$query) or die(mysql_error());
+    $rows = mysqli_num_rows($result);
+    if($rows==1){
+        $row=$result->fetch_assoc();            
+        $id=$row["id"];
+        $email=$row["email"];   
+        $name=$row["fname"]." ".$row["lname"];
+    }
 
-	$coure_cards="";
-	$sql = "SELECT * FROM `courses`";
-	$result1 = mysqli_query($con,$sql) or die(mysql_error());
-	if (mysqli_num_rows($result1)>0) {
-  		while ($row=mysqli_fetch_assoc($result1)) {
-    		$coure_cards.='<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src="'.$row["courseImage"].'" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">'.$row["courseName"].'</h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">'.$row["shortD"].'</div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="course.php?id='.$row["courseId"].'">Read more</a>
-                    </div></div>';
-		}
-  
- 	 }
+    $tableRow="";
+    $query = "SELECT * FROM `courses_taken` WHERE stdId=$id";
+    $result = mysqli_query($con,$query) or die(mysql_error());
+    if (mysqli_num_rows($result)>0) {
+        while ($row=mysqli_fetch_assoc($result)) {
+            $cid=$row['crsId'];
+            $sql = "SELECT * FROM `courses` WHERE courseId=$cid";
+            $result1 = mysqli_query($con,$sql) or die(mysql_error());
+            if (mysqli_num_rows($result1)==1) {
+                $row1=mysqli_fetch_assoc($result1);
+                $crsName=$row1['courseName'];
+            }
+ 
+            $tableRow.='<tr><td class="mdl-data-table__cell--non-numeric">'.$crsName.'</td>
+                                <td>
+                                    <div class="mdl-cell mdl-cell--12-col  login-btn-con">
+                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="content.php?id='.$cid.'">Content</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mdl-cell mdl-cell--12-col  login-btn-con">
+                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--primary" href="course.php?id='.$cid.'">Details</a>
+                                    </div>
+                                </td></tr>';
+        }
+    }
+
+    
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,6 +55,14 @@ include("auth.php");
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
     <script src="js/material.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript">
+        function content() {
+            f=document.getElementsById('content');
+            if (f) {
+             f.submit();
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -58,8 +76,8 @@ include("auth.php");
             </div>
             <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link is-active" href="student.php">Dashboard</a>
-                    <a class="mdl-navigation__link" href="student-courses.php">Registered Courses</a>
+                    <a class="mdl-navigation__link" href="student.php">Dashboard</a>
+                    <a class="mdl-navigation__link is-active" href="student-courses.php">Registered Courses</a>
                     <a class="mdl-navigation__link" href="student-edit.php">Edit Details</a>
                     <a class="mdl-navigation__link" href="contact.html">Contact</a>
                 </nav>
@@ -90,18 +108,21 @@ include("auth.php");
       	</div>
 
 		<main class="mdl-layout__content">
-			<div class="admin-cover-card-wide mdl-card mdl-shadow--2dp">
-				<div class="mdl-card__title">
-					<h2 class="mdl-card__title-text">Welcome <?php echo $name; ?></h2>
-				</div>
-				<div class="mdl-card__supporting-text">
-					One person with passion is better than ten with interest..!
-				</div>
-					    				
-			</div>
-			<div class="mdl-grid portfolio-max-width">
-				<?php echo $coure_cards; ?>
-			</div>
+            <div class="mdl-grid portfolio-max-width portfolio-contact">
+			<center>
+            <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                              <th class="mdl-data-table__cell--non-numeric">Course</th>
+                              <th></th>
+                              <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <?php echo $tableRow; ?>
+                        </tbody>
+                    </table></center>
+                </div>
 
 			<footer class="mdl-mini-footer">
                 <div class="mdl-mini-footer__left-section">

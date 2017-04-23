@@ -21,12 +21,12 @@ if (mysqli_num_rows($result1)>0) {
   
   } 
   
-  $coursenameErr=$shortdErr=$longdErr=$coursename=$shortd=$longd=$successMessage=$course=$courseErr=$shortde=$shortdeErr=$longde=$longdeErr=$courses=$coursesErr="";
+  $successMessage=$course=$courseErr=$title=$titleErr=$body=$bodyErr="";
 
   $tab1_a=" is-active";
   $tab2_a=$tab3_a="";
   $editF="";
-  $b=$btNm="select";
+  $btNm="select";
 
   $flag=0;
   $t=1;
@@ -34,33 +34,41 @@ if (mysqli_num_rows($result1)>0) {
    if ($_SERVER["REQUEST_METHOD"]=="POST"){
     if ($_POST['addC']=="addC") {
 
-      if(empty($_POST["coursename"])) {
-        $coursenameErr="Course name is required.";
+      if(empty($_POST["course"])) {
+        $courseErr="First select a course.";
         $flag=1;
       }
       else {
-        $coursename = test_input($_POST['coursename']);
+        $course = test_input($_POST['course']);
       }
-      if(empty($_POST["shortd"])) {
-        $shortdErr="Short description is required.";
+      if(empty($_POST["title"])) {
+        $titleErr="Title is required.";
         $flag=1;
       }
       else {
-        $shortd = test_input($_POST['shortd']);
+        $title = test_input($_POST['title']);
       }
-      if(empty($_POST["longd"])) {
-        $longdErr="Long description is required.";
+      if(empty($_POST["body"])) {
+        $bodyErr="Body is required.";
         $flag=1;
       }
       else {
-        $longd = test_input($_POST['longd']);
+        $body = test_input($_POST['body']);
       }
+
+      $result = mysqli_query($con,"SELECT * FROM `courses` WHERE courseName = '$course'") or die(mysql_error());
+      if (mysqli_num_rows($result)==1) {
+        $row=mysqli_fetch_assoc($result);
+        $cid=$row["courseId"];
+      }
+
+      $trn_date = date("Y-m-d H:i:s");
       
       if($flag==0) {
-        $query = "INSERT into `courses` (courseName, shortD, longD) VALUES ('$coursename', '$shortd', '$longd')";
+        $query = "INSERT into `contents` (cId, title, body, post_date) VALUES ($cid, '$title', '$body', '$trn_date')";
         $result = mysqli_query($con,$query);
         if($result){
-          $coursenameErr=$shortdErr=$longdErr=$coursename=$shortd=$longd=$successMessage="";
+          $course=$courseErr=$title=$titleErr=$body=$bodyErr="";
           $successMessage='<div class="mdl-grid portfolio-max-width">
                      <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__title">
@@ -78,62 +86,74 @@ if (mysqli_num_rows($result1)>0) {
       $tab1_a=$tab3_a="";
 
       
-        if(empty($_POST["shortd"])) {
+        if(empty($_POST["titlee"])) {
           if ($_POST['choice']=="save") {
-        $shortdeErr="Short description is required.";}
+        $titleeErr="Title is required.";}
         $flag=1;
         }
         else {
-          $shortde = test_input($_POST['shortd']);
+          $titlee = test_input($_POST['titlee']);
         }
       
 
       
-        if(empty($_POST["longd"])) {
+        if(empty($_POST["bodye"])) {
           if ($_POST['choice']=="save") {
-           $longdeErr="Long description is required.";}
+           $bodyeErr="Body is required.";}
          $flag=1;
        }
         else {
-         $longde = test_input($_POST['longd']);
+         $bodye = test_input($_POST['bodye']);
         }
       
       
-      if(empty($_POST["course"])) {
-        $courseErr="Select a course first.";
+      if(empty($_POST["scourse"])) {
+        $courseeErr="Select a course first.";
         $flag=1;
       }
       else {
-        $course = test_input($_POST['course']);
+        $coursee = test_input($_POST['scourse']);
+      }
+      if(empty($_POST['stitle'])){
+        $stitleErr="Select a course first.";
+        $flag=1;
+      }
+      else{
+        $stitle = test_input($_POST['stitle']);
         $result = mysqli_query($con,"SELECT * FROM `courses` WHERE courseName = '$course'") or die(mysql_error());
-      if (mysqli_num_rows($result)==1) {
+        if (mysqli_num_rows($result)==1) {
         $row=mysqli_fetch_assoc($result);
         $cid=$row["courseId"];
-        if(test_input($_POST['choice'])!="save"){
-        $shortde=$row['shortD'];
-        $longde=$row['longD'];}
+        }
 
-      }
-        $b=$btNm="save";
-        $editF='<div class="mdl-cell mdl-cell--6-col cell_con">
-                <i class="material-icons">lock</i>
+        $result = mysqli_query($con,"SELECT * FROM `contents` WHERE cId = $cid AND title = '$stitle'") or die(mysql_error());
+        if (mysqli_num_rows($result)==1) {
+        $row=mysqli_fetch_assoc($result);
+        if(test_input($_POST['choice'])!="save"){
+        $bodye=$row["body"];}
+        }
+
+
+        $btNm="save";
+        $editF='<div class="mdl-cell mdl-cell--12-col cell_con">
+                <i class="material-icons">person</i>
               
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="shortd" name="shortd" value="'.$shortde.'">
-                  <label class="mdl-textfield__label" for="shortd">Enter a Short Description</label>
-                  <span class="error">'.$shortdeErr.'</span>
-                    </div>
+                <input class="mdl-textfield__input" type="text" rows= "3" id="titlee" name="bodye" value="'.$titlee.'"></input>
+                <label class="mdl-textfield__label" for="longd">Title</label>
+                <span class="error">'.$titleeErr.'</span>
+                </div>
               </div>
 
               <div class="mdl-cell mdl-cell--12-col cell_con">
-              <i class="material-icons">home</i>
+                <i class="material-icons">home</i>
               
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" rows= "3" id="longd" name="longd" value="'.$longde.'"></input>
-                <label class="mdl-textfield__label" for="longd">Long Description</label>
-                <span class="error">'.$longdeErr.'</span>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" rows= "3" id="bodye" name="bodye" value="'.$bodye.'"></input>
+                <label class="mdl-textfield__label" for="longd">Body</label>
+                <span class="error">'.$bodyeErr.'</span>
                 </div>
-                </div>';
+              </div>';
       }
 
       
@@ -255,8 +275,8 @@ if (mysqli_num_rows($result1)>0) {
             <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
                     <a class="mdl-navigation__link" href="admin.php">Dashboard</a>
-                    <a class="mdl-navigation__link is-active" href="admin-courses.php">Courses</a>
-                    <a class="mdl-navigation__link" href="admin-contents.php">Contents</a>
+                    <a class="mdl-navigation__link" href="admin-courses.php">Courses</a>
+                    <a class="mdl-navigation__link is-active" href="admin-contents.php">Contents</a>
                     <a class="mdl-navigation__link" href="admin-students.php">Students</a>
                     <a class="mdl-navigation__link" href="contact.html">Contact</a>
                 </nav>
@@ -293,56 +313,12 @@ if (mysqli_num_rows($result1)>0) {
         <div class="mdl-shadow--2dp">
             <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
               <div class="mdl-tabs__tab-bar">
-                <a href="#tab-1" class="mdl-tabs__tab <?php echo $tab1_a; ?>">ADD NEW COURSE</a>
-                <a href="#tab-2" class="mdl-tabs__tab <?php echo $tab2_a; ?>">EDIT COURSE</a>
-                <a href="#tab-3" class="mdl-tabs__tab <?php echo $tab3_a; ?>">DELETE COURSE</a>
+                <a href="#tab-1" class="mdl-tabs__tab <?php echo $tab1_a; ?>">ADD NEW CONTENT</a>
               </div>
-
               <div class="mdl-tabs__panel <?php echo $tab1_a; ?>" id="tab-1">
                   <center><form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="addcourse" id="addcourse">
                       <input type="hidden" name="addC" value="addC">
-              <div class="mdl-cell mdl-cell--6-col cell_con">
-                <i class="material-icons">person</i>
-                
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="coursename" name="coursename" value="<?php echo $coursename; ?>">
-                  <label class="mdl-textfield__label" for="coursename">Enter Course Name</label>
-                  <span class="error"><?php echo $coursenameErr; ?></span>
-                    </div>
-              </div>  
-
-              <div class="mdl-cell mdl-cell--6-col cell_con">
-                <i class="material-icons">lock</i>
-              
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="shortd" name="shortd" value="<?php echo $shortd; ?>">
-                  <label class="mdl-textfield__label" for="shortd">Enter a Short Description</label>
-                  <span class="error"><?php echo $shortdErr; ?></span>
-                    </div>
-              </div>
-
-              <div class="mdl-cell mdl-cell--12-col cell_con">
-              <i class="material-icons">home</i>
-              
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <textarea class="mdl-textfield__input" type="text" rows= "3" id="longd" name="longd" value="<?php echo $longd; ?>"></textarea>
-                <label class="mdl-textfield__label" for="longd">Long Description</label>
-                <span class="error"><?php echo $longdErr; ?></span>
-                </div>
-                </div>
-        
-              <div class="mdl-cell mdl-cell--6-col  login-btn-con">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn" onclick="postCourse()">ADD COURSE</button>
-              </div>
-           
-            </form></center>
-            <br />
-              </div>
-
-              <div class="mdl-tabs__panel <?php echo $tab2_a; ?>" id="tab-2">
-                <center><form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="editcourse" id="editcourse">
-                      <input type="hidden" name="editC" value="editC">
-                  <div class="mdl-cell mdl-cell--6-col cell_con">
+               <div class="mdl-cell mdl-cell--6-col cell_con">
                 <i class="material-icons">person</i>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
                   <input class="mdl-textfield__input" value="<?php echo $course ?>" type="text" id="course" name="course" readonly tabIndex="-1" />
@@ -354,36 +330,28 @@ if (mysqli_num_rows($result1)>0) {
                 </div>
               </div> 
 
-              <?php echo $editF; ?>
-              <input type="hidden" name="choice" value="<?php echo $b; ?>">
+              <div class="mdl-cell mdl-cell--6-col cell_con">
+                <i class="material-icons">lock</i>
+              
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="title" name="title" value="<?php echo $title; ?>">
+                  <label class="mdl-textfield__label" for="title">Title</label>
+                  <span class="error"><?php echo $titleErr; ?></span>
+                    </div>
+              </div>
+
+              <div class="mdl-cell mdl-cell--12-col cell_con">
+              <i class="material-icons">home</i>
+              
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input" type="text" rows= "3" id="body" name="body" value="<?php echo $body; ?>"></textarea>
+                <label class="mdl-textfield__label" for="body">Body</label>
+                <span class="error"><?php echo $bodyErr; ?></span>
+                </div>
+                </div>
         
               <div class="mdl-cell mdl-cell--6-col  login-btn-con">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn" onclick="editCourse()"><?php echo $btNm; ?></button>
-              </div>
-           
-            </form></center>
-                   
-            <br />
-
-                </div>
-              <div class="mdl-tabs__panel <?php echo $tab3_a; ?>" id="tab-3">
-                   <center><form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="deletecourse" id="deletecourse">
-                      <input type="hidden" name="deleteC" value="deleteC">
-                      
-
-                <div class="mdl-cell mdl-cell--6-col cell_con">
-                <i class="material-icons">person</i>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-                  <input class="mdl-textfield__input" value="<?php echo $courses ?>" type="text" id="courses" name="courses" readonly tabIndex="-1" />
-                    <label class="mdl-textfield__label" for="courses">Course</label>
-                    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="courses">
-                      <?php echo $list; ?>
-                    </ul>
-                    <span class="error"><?php echo $coursesErr; ?></span>
-                </div>
-              </div>
-              <div class="mdl-cell mdl-cell--6-col  login-btn-con">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn" onclick="deleteCourse()">DELETE COURSE</button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn" onclick="postCourse()">ADD CONTENT</button>
               </div>
            
             </form></center>

@@ -9,6 +9,33 @@ $rows = mysqli_num_rows($result);
 	$row=$result->fetch_assoc();
 	$email=$row["email"];
 	}
+  if (isset($_REQUEST["id"])) {
+   $sid=$_REQUEST["id"];
+  
+  $couse_list="";
+
+  $query="SELECT `users`.`email`,`students`.*,`courses`.`courseName` FROM `users`, `students`,`courses`,`courses_taken` WHERE `users`.`id`=$sid AND `students`.`studentId`=`users`.`id` AND `courses_taken`.`stdId`=`students`.`studentId` AND `courses`.`courseId`=`courses_taken`.`crsId`";
+$student_details="";
+$i=1;
+$result = mysqli_query($con,$query) or die(mysql_error());
+if (mysqli_num_rows($result)>0) {
+  while ($row=mysqli_fetch_assoc($result)) {
+      $student_details='<strong>Name : </strong>'.$row["fname"]." ".$row["lname"].'<br /><br />
+                <strong>Birth Date : </strong>'.$row["dob"].'<br /><br />
+                <strong>Gender : </strong>'.$row["gender"].'<br /><br />
+                <strong>Email : </strong>'.$row["email"].'<br /><br />
+                <strong>Address : </strong>'.$row["address"].'<br /><br />
+                <strong>Phone : </strong>'.$row["phone"].'<br /><br />
+                <strong>College : </strong>'.$row["college"].'<br /><br />
+                <h6><strong>Courses Selected</strong></h6>';
+      $couse_list.=$i.". ".$row["courseName"].'<br /><br />';
+      $i++;
+
+  }
+  $student_details.=$couse_list;
+}
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,10 +63,10 @@ $rows = mysqli_num_rows($result);
             </div>
             <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link is-active" href="admin.php">Dashboard</a>
+                    <a class="mdl-navigation__link" href="admin.php">Dashboard</a>
                     <a class="mdl-navigation__link" href="admin-courses.php">Courses</a>
                     <a class="mdl-navigation__link" href="admin-contents.php">Contents</a>
-                    <a class="mdl-navigation__link" href="admin-students.php">Students</a>
+                    <a class="mdl-navigation__link is-active" href="admin-students.php">Students</a>
                     <a class="mdl-navigation__link" href="contact.html">Contact</a>
                 </nav>
             </div>
@@ -70,15 +97,21 @@ $rows = mysqli_num_rows($result);
       	</div>
 
 		<main class="mdl-layout__content">
-			<div class="admin-cover-card-wide mdl-card mdl-shadow--2dp">
-				<div class="mdl-card__title">
-					<h2 class="mdl-card__title-text">Welcome Administrator</h2>
-				</div>
-				<div class="mdl-card__supporting-text">
-					One person with passion is better than ten with interest..!
-				</div>
-					    				
-			</div>
+      <div class="mdl-grid portfolio-max-width portfolio-contact">
+			   <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+              <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Student Deatils</h2>
+              </div>
+              <center><div class="mdl-cell mdl-cell--12-col  login-btn-con">
+                          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="admin-students.php?id=<?php echo $sid; ?>"><strong>Delete</strong<>/a>
+                      </div></center>
+              
+              <div class="mdl-card__supporting-text">
+                <?php echo $student_details; ?>
+
+              </div>
+          </div>
+      </div>
 
 			<footer class="mdl-mini-footer">
                 <div class="mdl-mini-footer__left-section">

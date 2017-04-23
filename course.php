@@ -2,7 +2,7 @@
 require('db.php');
 session_start();
 $btn="Register";
-$successMessage=$flag="";
+$successMessage=$flag=$content="";
 $uid=0;
 $header='<header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
             <div class="mdl-layout__header-row portfolio-logo-row">
@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
         if($result){
             $flag="disabled";
             $btn="Registered";
+            $content='&nbsp&nbsp&nbsp<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="content.php?id='.$crs.'">content</a>';
           $successMessage='<div class="mdl-grid portfolio-max-width">
                      <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__title">
@@ -127,6 +128,7 @@ if(isset($_SESSION["username"])){
             if(mysqli_num_rows($result)==1){
                 $flag="disabled";
                 $btn="Registered";
+                $content='&nbsp&nbsp&nbsp<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="content.php?id='.$c.'">content</a>';
             }
 
             $header='<header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
@@ -194,7 +196,7 @@ if (isset($_REQUEST['id']) || isset($_REQUEST['cid'])){
                         <input type="hidden" name="uid" value="'.$uid.'">
                         <input type="hidden" name="cid" value="'.$cid.'">
                         <div class="mdl-cell mdl-cell--12-col  login-btn-con">
-                            <center><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn" onclick="register()" '.$flag.'>'.$btn.'</button></center>
+                            <center><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn" onclick="register()" '.$flag.'>'.$btn.'</button>'.$content.'</center>
                         </div>
                         </form>
                         <p>'.$row["longD"].'</p>
