@@ -79,7 +79,7 @@ include("auth.php");
                     <a class="mdl-navigation__link" href="student.php">Dashboard</a>
                     <a class="mdl-navigation__link is-active" href="student-courses.php">Registered Courses</a>
                     <a class="mdl-navigation__link" href="student-edit.php">Edit Details</a>
-                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
+                    <a class="mdl-navigation__link" href="about.php">About</a>
                 </nav>
             </div>
         </header>
@@ -103,7 +103,7 @@ include("auth.php");
           <a class="mdl-navigation__link" href="student.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">home</i>Dashboard</a>
           <a class="mdl-navigation__link" href="student-courses.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">inbox</i>Registered Courses</a>
           <a class="mdl-navigation__link" href="student-edit.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">delete</i>Edit Details</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">report</i>Contact</a>
+          <a class="mdl-navigation__link" href="about.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">report</i>About</a>
         </nav>
       	</div>
 

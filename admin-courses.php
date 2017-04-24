@@ -299,7 +299,7 @@ if (mysqli_num_rows($result1)>0) {
                     <a class="mdl-navigation__link is-active" href="admin-courses.php">Courses</a>
                     <a class="mdl-navigation__link" href="admin-contents.php">Contents</a>
                     <a class="mdl-navigation__link" href="admin-students.php">Students</a>
-                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
+                    <a class="mdl-navigation__link" href="about.php">About</a>
                 </nav>
             </div>
         </header>
@@ -324,7 +324,7 @@ if (mysqli_num_rows($result1)>0) {
           <a class="mdl-navigation__link" href="admin-courses.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">inbox</i>Courses</a>
           <a class="mdl-navigation__link" href="admin-contents.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">inbox</i>Contents</a>
           <a class="mdl-navigation__link" href="admin-students.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">delete</i>Students</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">report</i>Spam</a>
+          <a class="mdl-navigation__link" href="about.php"><i class="mdl-color-text--grey-pink-400 material-icons" role="presentation">report</i>About</a>
         </nav>
       	</div>
 
