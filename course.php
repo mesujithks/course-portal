@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     if ($user==0) {
         header("Location: login.php");
     }elseif ($user==1) {
-        header("Location: admin-courses.php?eid=".$user);
+        header("Location: admin-courses.php?eid=".$crs);
     }else{
         $query = "INSERT into `courses_taken` (stdId, crsId) VALUES ($user,$crs)";
         $result = mysqli_query($con,$query);

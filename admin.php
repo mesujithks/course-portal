@@ -9,6 +9,27 @@ $rows = mysqli_num_rows($result);
 	$row=$result->fetch_assoc();
 	$email=$row["email"];
 	}
+
+  $tableRow="";
+  $query = "SELECT courseName,crsId,COUNT(*) FROM courses,courses_taken WHERE courses.courseId=courses_taken.crsId GROUP BY courses_taken.crsId";
+    $result = mysqli_query($con,$query) or die(mysql_error());
+    if (mysqli_num_rows($result)>0) {
+        while ($row=mysqli_fetch_assoc($result)) {
+            $sid=$row['studentId'];
+ 
+            $tableRow.='<tr><td class="mdl-data-table__cell--non-numeric">'.$row["courseName"].'</td><td class="mdl-data-table__cell--non-numeric">'.$row["COUNT(*)"].'</td>
+                                <td>
+                                    <div class="mdl-cell mdl-cell--12-col  login-btn-con">
+                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="course.php?id='.$row["crsId"].'">view course</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mdl-cell mdl-cell--12-col  login-btn-con">
+                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="admin-students.php?crid='.$row["crsId"].'">view students</a>
+                                    </div>
+                                </td></tr>';
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,6 +91,7 @@ $rows = mysqli_num_rows($result);
       	</div>
 
 		<main class="mdl-layout__content">
+    <br />
 			<div class="admin-cover-card-wide mdl-card mdl-shadow--2dp">
 				<div class="mdl-card__title">
 					<h2 class="mdl-card__title-text">Welcome Administrator</h2>
@@ -78,7 +100,22 @@ $rows = mysqli_num_rows($result);
 					One person with passion is better than ten with interest..!
 				</div>
 					    				
-			</div>
+			</div><br />
+      <center>
+            <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                              <th class="mdl-data-table__cell--non-numeric">Course Name</th>
+                              <th class="mdl-data-table__cell--non-numeric">Number Of Students</th>
+                              <th></th>
+                              <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <?php echo $tableRow; ?>
+                        </tbody>
+                    </table></center><br />
+      
 
 			<footer class="mdl-mini-footer">
                 <div class="mdl-mini-footer__left-section">

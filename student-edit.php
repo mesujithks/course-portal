@@ -80,7 +80,7 @@ include("auth.php");
                         <h2 class="mdl-card__title-text">Edit Details</h2>
                     </div>
                     <div class="mdl-card__media">
-                        <img class="article-image" src=" images/contact-image.jpg" border="0" alt="">
+                        <img class="article-image" src=" images/online-courses.png" border="0" alt="">
                     </div>
                     <div class="mdl-card__supporting-text">
                     	<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'" name="edit" id="editstudent">

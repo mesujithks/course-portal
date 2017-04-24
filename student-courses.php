@@ -108,8 +108,7 @@ include("auth.php");
       	</div>
 
 		<main class="mdl-layout__content">
-            <div class="mdl-grid portfolio-max-width portfolio-contact">
-			<center>
+			<br /><center>
             <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
                         <thead>
                             <tr>
@@ -121,8 +120,8 @@ include("auth.php");
                         <tbody>
                                 <?php echo $tableRow; ?>
                         </tbody>
-                    </table></center>
-                </div>
+                    </table></center><br />
+               
 
 			<footer class="mdl-mini-footer">
                 <div class="mdl-mini-footer__left-section">

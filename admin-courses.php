@@ -28,8 +28,49 @@ if (mysqli_num_rows($result1)>0) {
   $editF="";
   $b=$btNm="select";
 
-  $flag=0;
+  $flag=$e=0;
   $t=1;
+
+  if (isset($_REQUEST["eid"])) {
+    $tab2_a=" is-active";
+    $tab1_a=$tab3_a="";
+    $e=1;
+    $cide=$_REQUEST['eid'];
+    $query="SELECT * FROM `courses` WHERE courseId = $cide";
+
+    $result = mysqli_query($con,$query) or die(mysql_error());
+  
+    if (mysqli_num_rows($result)==1) {
+      $row=mysqli_fetch_assoc($result);
+        $course=$row["courseName"];
+        $shortde=$row['shortD'];
+        $longde=$row['longD'];
+        $b=$btNm="save";
+    
+        $editF='<div class="mdl-cell mdl-cell--6-col cell_con">
+                <i class="material-icons">lock</i>
+              
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="shortd" name="shortd" value="'.$shortde.'">
+                  <label class="mdl-textfield__label" for="shortd">Enter a Short Description</label>
+                  <span class="error">'.$shortdeErr.'</span>
+                    </div>
+              </div>
+
+              <div class="mdl-cell mdl-cell--12-col cell_con">
+              <i class="material-icons">home</i>
+              
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" rows= "3" id="longd" name="longd" value="'.$longde.'"></input>
+                <label class="mdl-textfield__label" for="longd">Long Description</label>
+                <span class="error">'.$longdeErr.'</span>
+                </div>
+                </div>';
+
+    }else echo mysqli_error($con);
+
+    
+  }
   
    if ($_SERVER["REQUEST_METHOD"]=="POST"){
     if ($_POST['addC']=="addC") {

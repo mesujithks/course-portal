@@ -90,7 +90,8 @@ include("auth.php");
       	</div>
 
 		<main class="mdl-layout__content">
-			<div class="admin-cover-card-wide mdl-card mdl-shadow--2dp">
+        <br />
+			<div class="student-cover-card-wide mdl-card mdl-shadow--2dp">
 				<div class="mdl-card__title">
 					<h2 class="mdl-card__title-text">Welcome <?php echo $name; ?></h2>
 				</div>
@@ -99,6 +100,7 @@ include("auth.php");
 				</div>
 					    				
 			</div>
+            <center><h5><strong>Available Courses</strong></h5></center>
 			<div class="mdl-grid portfolio-max-width">
 				<?php echo $coure_cards; ?>
 			</div>

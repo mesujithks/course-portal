@@ -179,7 +179,7 @@
                         <h2 class="mdl-card__title-text">Create new account</h2>
                     </div>
                     <div class="mdl-card__media">
-                        <img class="article-image" src=" images/contact-image.jpg" border="0" alt="">
+                        <img class="article-image" src=" images/signup-image.png" border="0" alt="">
                     </div>
                     <div class="mdl-card__supporting-text">
                     	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="signup" id="signupstudent">

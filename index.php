@@ -63,7 +63,9 @@ if (mysqli_num_rows($result1)>0) {
             </nav>
         </div>
         <main class="mdl-layout__content">
+        <center><h5><strong>Available Courses</strong></h5></center>
             <div class="mdl-grid portfolio-max-width">
+                <br />
                 <?php echo $coure_cards; ?>
             </div>
         	<footer class="mdl-mini-footer">

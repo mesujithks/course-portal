@@ -5,7 +5,7 @@ $username=$_SESSION["username"];
 $query = "SELECT * FROM `users` WHERE username='$username'";
 $result = mysqli_query($con,$query) or die(mysql_error());
 $rows = mysqli_num_rows($result);
-  										if($rows==1){
+if($rows==1){
 	$row=$result->fetch_assoc();
 	$email=$row["email"];
 	}
@@ -14,13 +14,23 @@ $rows = mysqli_num_rows($result);
   
   $couse_list="";
 
-  $query="SELECT `users`.`email`,`students`.*,`courses`.`courseName` FROM `users`, `students`,`courses`,`courses_taken` WHERE `users`.`id`=$sid AND `students`.`studentId`=`users`.`id` AND `courses_taken`.`stdId`=`students`.`studentId` AND `courses`.`courseId`=`courses_taken`.`crsId`";
+  $query="SELECT * FROM students,users WHERE students.studentId=$sid AND users.id=$sid";
 $student_details="";
 $i=1;
-$result = mysqli_query($con,$query) or die(mysql_error());
+
+$result = mysqli_query($con,"SELECT courses.courseName FROM courses_taken,courses WHERE courses_taken.stdId=$sid AND courses.courseId=courses_taken.crsId") or die(mysql_error());
 if (mysqli_num_rows($result)>0) {
   while ($row=mysqli_fetch_assoc($result)) {
-      $student_details='<strong>Name : </strong>'.$row["fname"]." ".$row["lname"].'<br /><br />
+    $couse_list.=$i.". ".$row["courseName"].'<br /><br />';
+    $i++;
+  }
+
+}
+
+$result = mysqli_query($con,$query) or die(mysql_error());
+if (mysqli_num_rows($result)==1) {
+  $row=mysqli_fetch_assoc($result);
+  $student_details='<strong>Name : </strong>'.$row["fname"]." ".$row["lname"].'<br /><br />
                 <strong>Birth Date : </strong>'.$row["dob"].'<br /><br />
                 <strong>Gender : </strong>'.$row["gender"].'<br /><br />
                 <strong>Email : </strong>'.$row["email"].'<br /><br />
@@ -28,12 +38,9 @@ if (mysqli_num_rows($result)>0) {
                 <strong>Phone : </strong>'.$row["phone"].'<br /><br />
                 <strong>College : </strong>'.$row["college"].'<br /><br />
                 <h6><strong>Courses Selected</strong></h6>';
-      $couse_list.=$i.". ".$row["courseName"].'<br /><br />';
-      $i++;
-
-  }
+  
   $student_details.=$couse_list;
-}
+} 
 }
 
 ?>
@@ -103,10 +110,11 @@ if (mysqli_num_rows($result)>0) {
                         <h2 class="mdl-card__title-text">Student Deatils</h2>
               </div>
               <center><div class="mdl-cell mdl-cell--12-col  login-btn-con">
-                          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="admin-students.php?id=<?php echo $sid; ?>"><strong>Delete</strong<>/a>
+                          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="admin-students.php?id=<?php echo $sid; ?>"><strong>Delete</strong></a>
                       </div></center>
               
               <div class="mdl-card__supporting-text">
+             
                 <?php echo $student_details; ?>
 
               </div>

@@ -28,12 +28,22 @@ $rows = mysqli_num_rows($result);
  
   }
 
+  $query = "SELECT * FROM `students`";
+  $title="All Students";
+
+  if (isset($_REQUEST['crid'])) {
+    $cid=$_REQUEST['crid'];
+    $query="SELECT * FROM students,courses_taken,courses WHERE courses_taken.crsId=$cid AND courses.courseId=$cid";
+  }
+
     $tableRow="";
-    $query = "SELECT * FROM `students`";
     $result = mysqli_query($con,$query) or die(mysql_error());
     if (mysqli_num_rows($result)>0) {
         while ($row=mysqli_fetch_assoc($result)) {
             $sid=$row['studentId'];
+            if (isset($_REQUEST['crid'])) {
+              $title=$row['courseName']." - Students List";
+            }
  
             $tableRow.='<tr><td>'.$sid.'</td><td class="mdl-data-table__cell--non-numeric">'.$row["fname"]." ".$row["lname"].'</td>
                                 <td>
@@ -109,8 +119,8 @@ $rows = mysqli_num_rows($result);
       	</div>
 
 		<main class="mdl-layout__content">
-    <?php echo $successMessage; ?>
-      <div class="mdl-grid portfolio-max-width portfolio-contact">
+    <?php echo $successMessage; ?><br />
+    <center><h5><?php echo $title; ?></h5></center><br />
       <center>
             <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
                         <thead>
@@ -124,8 +134,8 @@ $rows = mysqli_num_rows($result);
                         <tbody>
                                 <?php echo $tableRow; ?>
                         </tbody>
-                    </table></center>
-                </div>
+                    </table></center><br />
+                
 			
 
 			<footer class="mdl-mini-footer">

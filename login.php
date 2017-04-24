@@ -124,7 +124,7 @@
                         <h2 class="mdl-card__title-text">Login to your account</h2>
                     </div>
                     <div class="mdl-card__media">
-                        <img class="article-image" src=" images/contact-image.jpg" border="0" alt="">
+                        <img class="article-image" src=" images/login-image.png" border="0" alt="">
                     </div>
                     <div class="mdl-card__supporting-text">
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="login" id="getlogin">
