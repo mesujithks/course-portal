@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
                         <h2 class="mdl-card__title-text">Success!</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        New content is successfully posted.
+                        Course Registered Successfully.
                     </div>
                 </div></div>';
         }
@@ -85,7 +85,7 @@ if(isset($_SESSION["username"])){
                     <a class="mdl-navigation__link is-active" href="admin.php">Dashboard</a>
                     <a class="mdl-navigation__link" href="admin-courses.php">Courses</a>
                     <a class="mdl-navigation__link" href="admin-students.php">Students</a>
-                    <a class="mdl-navigation__link" href="about.php">About/a>
+                    <a class="mdl-navigation__link" href="about.php">About</a>
                 </nav>
             </div>
         </header>

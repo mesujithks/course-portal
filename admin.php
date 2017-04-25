@@ -11,21 +11,28 @@ $rows = mysqli_num_rows($result);
 	}
 
   $tableRow="";
-  $query = "SELECT courseName,crsId,COUNT(*) FROM courses,courses_taken WHERE courses.courseId=courses_taken.crsId GROUP BY courses_taken.crsId";
+  $query = "SELECT * FROM courses";
     $result = mysqli_query($con,$query) or die(mysql_error());
     if (mysqli_num_rows($result)>0) {
         while ($row=mysqli_fetch_assoc($result)) {
-            $sid=$row['studentId'];
+            $crsid=$row["courseId"];
+            $count=0;
+            $sql = "SELECT crsId,COUNT(*) FROM courses_taken WHERE crsId=$crsid GROUP BY crsId";
+            $result1 = mysqli_query($con,$sql) or die(mysql_error());
+            if (mysqli_num_rows($result1)==1){
+              $row1=mysqli_fetch_assoc($result1);
+              $count=$row1['COUNT(*)'];
+            }
  
-            $tableRow.='<tr><td class="mdl-data-table__cell--non-numeric">'.$row["courseName"].'</td><td class="mdl-data-table__cell--non-numeric">'.$row["COUNT(*)"].'</td>
+            $tableRow.='<tr><td class="mdl-data-table__cell--non-numeric">'.$row["courseName"].'</td><td class="mdl-data-table__cell--non-numeric">'.$count.'</td>
                                 <td>
                                     <div class="mdl-cell mdl-cell--12-col  login-btn-con">
-                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="course.php?id='.$row["crsId"].'">view course</a>
+                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="course.php?id='.$crsid.'">view course</a>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="mdl-cell mdl-cell--12-col  login-btn-con">
-                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="admin-students.php?crid='.$row["crsId"].'">view students</a>
+                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="admin-students.php?crid='.$crsid.'">view students</a>
                                     </div>
                                 </td></tr>';
         }

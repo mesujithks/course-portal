@@ -94,7 +94,7 @@ if (mysqli_num_rows($result1)>0) {
         $flag=1;
       }
       else {
-        $longd = test_input($_POST['longd']);
+        $longd = test_input_new($_POST['longd']);
       }
       
       if($flag==0) {
@@ -136,7 +136,7 @@ if (mysqli_num_rows($result1)>0) {
          $flag=1;
        }
         else {
-         $longde = test_input($_POST['longd']);
+         $longde = test_input_new($_POST['longd']);
         }
       
       
@@ -240,6 +240,12 @@ if (mysqli_num_rows($result1)>0) {
     $data=trim($data);
     $data=stripslashes($data);
     $data=htmlspecialchars($data);
+    return $data;
+    }
+
+    function test_input_new($data) {
+    $data=trim($data);
+    $data=stripslashes($data);
     return $data;
     }
 ?>

@@ -1,14 +1,400 @@
-/*
-Author: Javed Ur Rehman
-Website: http://www.allphptricks.com/
-*/
+/*badges.html*/
+.badegs_column{
+  width:100%;
+  padding: 15px 10px;
+  background:#fff;
+}
+.column{
+  height:100%;
+  width:100%;
+  text-align:center;
+  font-size:15px
+}
 
-body {font-family:Arial, Sans-Serif;}
-.clearfix:before, .clearfix:after { content: ""; display: table; }
-.clearfix:after { clear: both; }
-a {color:#0067ab; text-decoration:none;}
-a:hover {text-decoration:underline;}
-.form{width: 300px; margin: 0 auto;}
-input[type='text'], input[type='email'], input[type='password'] {width: 200px; border-radius: 2px;border: 1px solid #CCC; padding: 10px; color: #333; font-size: 14px; margin-top: 10px;}
-input[type='submit']{padding: 10px 25px 8px; color: #fff; background-color: #0067ab; text-shadow: rgba(0,0,0,0.24) 0 1px 0; font-size: 16px; box-shadow: rgba(255,255,255,0.24) 0 2px 0 0 inset,#fff 0 1px 0 0; border: 1px solid #0164a5; border-radius: 2px; margin-top: 10px; cursor:pointer;}
-input[type='submit']:hover {background-color: #024978;}
+.dp_img{
+display: block;
+max-width: 50px;
+max-height: 50px;
+width: auto;
+height: auto;
+border-radius: 24px;
+}
+
+.error {
+  color: rgb(222, 50, 38);
+  position: absolute;
+  font-size: 12px;
+  margin-top: 3px;
+  visibility: visible;
+  display: block; 
+  text-align: center;
+  }
+  
+/*from-fields page*/
+.main_content{
+  overflow: hidden !important;
+  background: #000;
+  padding: 20px 25px;
+}
+.form-fields-column{
+  width:100%;
+  padding: 15px 10px;
+  background:#fff;
+}
+.box{
+  box-sizing: border-box;
+  position: relative;
+  background: #FF6E40;
+  color: white;
+  height: 64px;
+  width: 100%;
+  padding: 16px;
+}
+.wrapper_box_left{
+  box-sizing: border-box;
+  left: 16px;
+}
+.wrapper_box_right{
+  box-sizing: border-box;
+  position: absolute;
+  right: 16px;
+}
+.btn-left{
+    margin-top: -30px;
+    float: right;
+}
+
+/*sliders-toggle-btn page*/
+.sliders-toggle-btn-column{
+  width:100%;
+  padding: 15px 10px;
+  background:#fff;
+}
+.sliders-toggle-btn-column2{
+  background:rgba(249, 249, 249, 0.67);
+  padding: 15px 10px;
+}
+.progress-bar{
+  width: 100% !important;;
+}
+
+/*cards html*/
+.demo-card-wide.mdl-card {
+  width: 100%;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../img/Codershood-logo-large.png') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.admin-cover-card-wide.mdl-card {
+  width: 100%;
+}
+.admin-cover-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../img/admin-cover.png') center / cover;
+}
+.admin-cover-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+
+.student-cover-card-wide.mdl-card {
+  width: 100%;
+}
+.student-cover-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../img/student-cover.png') center / cover;
+}
+.student-cover-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.demo-card-image.mdl-card {
+  width: 256px;
+  height: 256px;
+  background: url('../img/Batman-Vs-Superman.png') center / cover;
+}
+.demo-card-image > .mdl-card__actions {
+  height: 52px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.7);
+}
+.demo-card-image__filename {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.text_card{
+  font-size: 10px !important;
+}
+.demo-card-event.mdl-card {
+  width: 256px;
+  height: 256px;
+  background: #3E4EB8;
+}
+.demo-card-event > .mdl-card__actions {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.demo-card-event > .mdl-card__title {
+  align-items: flex-start;
+}
+.demo-card-event > .mdl-card__title > h4 {
+  margin-top: 0;
+}
+.demo-card-event > .mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+.demo-card-event > .mdl-card__title,
+.demo-card-event > .mdl-card__actions,
+.demo-card-event > .mdl-card__actions > .mdl-button {
+  color: #fff;
+}
+
+
+.demo-card-event.mdl-card {
+  width: 256px;
+  height: 256px;
+}
+.custom{
+  background: url('../img/Batman-Vs-Superman.png') center / cover  !important;
+}
+.demo-card-event > .mdl-card__actions {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.demo-card-event > .mdl-card__title {
+  align-items: flex-start;
+}
+.demo-card-event > .mdl-card__title > h4 {
+  margin-top: 0;
+}
+.demo-card-event > .mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+.demo-card-event > .mdl-card__title,
+.demo-card-event > .mdl-card__actions,
+.demo-card-event > .mdl-card__actions > .mdl-button {
+  color: #fff;
+}
+.mdl-card--expand{
+  background-color: rgba(0,0,0,0.2);
+}
+
+
+/*navigation-layouts.html*/
+.layout_col{
+  width: 100%;
+  background: #d2d2d2;
+  padding: 20px 20px;
+}
+.layout1{  
+  height: 100vh;
+  width: 100% !important;
+}
+
+.layout2{  
+  height: 10000px;
+  width: 100% !important;
+}
+/*1st*/
+.demo-layout-transparent {
+  background: url('../img/batmanvsuperman-large.png') center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+.layout__drawer_custom{
+  width: 100%;
+}
+.avatar{
+  border-radius: 240px;
+}
+.demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
+  padding-right: 0;
+}
+
+/*new style*/
+.portfolio-header {
+  position: relative;
+  background-image: url(images/header-bg.jpg);
+}
+
+.portfolio-header .mdl-layout__header-row {
+  padding: 0;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.mdl-layout__title {
+  font-size: 14px;
+  text-align: center;
+  font-weight: 300;
+}
+
+.is-compact .mdl-layout__title span {
+  display: none;
+}
+
+.portfolio-logo-row {
+  min-height: 200px;
+}
+
+.is-compact .portfolio-logo-row {
+  min-height: auto;
+}
+
+.portfolio-logo {
+  background: url(images/logo.png) 50% no-repeat;
+  background-size: cover;
+  height: 150px;
+  width: 150px;
+  margin: auto auto 10px;
+}
+
+.is-compact .portfolio-logo {
+  height: 50px;
+  width: 50px;
+  margin-top: 7px;
+}
+
+.portfolio-navigation-row {
+  background-color: rgba(0, 0, 0, 0.08);
+  text-transform: uppercase;
+  height: 45px;
+}
+
+.portfolio-navigation-row  .mdl-navigation {
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+}
+
+.portfolio-navigation-row .mdl-navigation__link {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  line-height: 42px;
+}
+
+.portfolio-header .mdl-layout__drawer-button {
+    background-color: rgba(197, 197, 197, 0.44);
+}
+
+.portfolio-navigation-row .is-active {
+  position: relative;
+  font-weight: bold;
+}
+
+.portfolio-navigation-row .is-active:after {
+  content: "";
+  width: 70%;
+  height: 2px;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(255,64,129);
+  left: 15%;
+}
+
+.portfolio-card .mdl-card__title {
+  padding-bottom: 0;
+}
+
+.portfolio-blog-card-full-bg {
+  background: url(images/example-blog03.jpg) center / cover;
+}
+
+.portfolio-blog-card-event-bg {
+  background: url(images/example-blog05.jpg) center / cover;
+}
+
+.portfolio-blog-card-strip-bg {
+  background: url(images/example-blog06.jpg) center / cover;
+}
+
+.portfolio-blog-card-compact .mdl-card__title {
+  padding-bottom: 0;
+}
+
+.portfolio-blog-card-bg > .mdl-card__actions {
+  height: 52px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+img.article-image {
+  width: 100%;
+  height: auto;
+}
+
+.portfolio-max-width {
+  max-width: 900px;
+  margin: auto;
+}
+
+.portfolio-copy {
+  max-width: 700px;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-left-padding{
+  padding-left: 0;
+}
+
+.no-bottom-padding {
+  padding-bottom: 0;
+}
+
+.padding-top {
+  padding: 10px 0 0;
+}
+
+.portfolio-share-btn {
+  position: relative;
+  float: right;
+  top: -4px;
+}
+
+.demo-card-event > .mdl-card__actions {
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.portfolio-contact .mdl-textfield {
+  width: 100%;
+}
+
+.portfolio-contact form {
+  max-width: 550px;
+  margin: auto;
+}
+
+footer {
+  background-image: url(images/footer-background.png);
+  background-size: cover;
+}
+
+
